@@ -1,4 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">Dance Trix</string>
+    <string name="bookClass">Book a class</string>
+    <string name="viewCalendar">View our calendar</string>
+    <string name="orderUniforms">Order uniforms</string>
+    <string name="makePayment">Make a payment</string>
+    <string name="aboutUs">About us</string>
+    <string name="visitWebsite">visit dancetrix.co.uk</string>
 </resources>
