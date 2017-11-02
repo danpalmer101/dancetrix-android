@@ -16,10 +16,10 @@ public class HomeActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
-        Toolbar myToolbar = findViewById(R.id.toolbar);
-        setSupportActionBar(myToolbar);
+    }
 
-        getSupportActionBar().setDisplayShowTitleEnabled(false);
+    public void displayAboutUs(View view) {
+        startActivity(new Intent(this, AboutUsActivity.class));
     }
 
     public void visitWebsite(View view) {
