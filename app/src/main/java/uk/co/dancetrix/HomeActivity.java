@@ -15,6 +15,8 @@ public class HomeActivity extends AppCompatActivity {
         setContentView(R.layout.activity_home);
         Toolbar myToolbar = findViewById(R.id.toolbar);
         setSupportActionBar(myToolbar);
+
+        getSupportActionBar().setDisplayShowTitleEnabled(false);
     }
 
     public void visitWebsite(View view) {
