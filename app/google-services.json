@@ -1,0 +1,42 @@
+{
+  "project_info": {
+    "project_number": "424242602269",
+    "firebase_url": "https://dance-trix.firebaseio.com",
+    "project_id": "dance-trix",
+    "storage_bucket": "dance-trix.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:424242602269:android:753e3a1982fcce94",
+        "android_client_info": {
+          "package_name": "uk.co.dancetrix"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "424242602269-o0ce6l0bc1nk92to88e1lld4kulfkql5.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAFs_NqHmn0pCwqSZMy7K4ITrvy9Doc8zA"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
