@@ -8,6 +8,8 @@ import uk.co.dancetrix.R;
 
 public class Configuration {
 
+    // Set up
+
     static {
         FirebaseRemoteConfigSettings configSettings =
                 new FirebaseRemoteConfigSettings.Builder()
@@ -18,9 +20,13 @@ public class Configuration {
         FirebaseRemoteConfig.getInstance().setDefaults(R.xml.remote_config_defaults);
     }
 
+    // Remote config - website
+
     public static String getWebsiteUrl() {
         return getRemoteConfig("dancetrix_website");
     }
+
+    // Tools
 
     private static String getRemoteConfig(String key) {
         return FirebaseRemoteConfig.getInstance().getString(key);
