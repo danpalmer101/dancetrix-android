@@ -39,7 +39,10 @@ public class ClassDatesParserTest {
 
         assertEquals(start0.getTime(), dates.get(0).getStart());
         assertEquals(end0.getTime(), dates.get(0).getEnd());
+        assertEquals("Monday, Oct 2, 2017 (20:00 to 21:00)", dates.get(0).asText());
+
         assertEquals(start1.getTime(), dates.get(1).getStart());
         assertEquals(end1.getTime(), dates.get(1).getEnd());
+        assertEquals("Monday, Oct 9, 2017 (19:00 to 19:30)", dates.get(1).asText());
     }
 }
