@@ -3,13 +3,10 @@ package uk.co.dancetrix;
 import org.junit.Test;
 
 import java.util.Calendar;
-import java.util.Date;
 import java.util.List;
 
-import uk.co.dancetrix.domain.ClassMenu;
 import uk.co.dancetrix.domain.DateInterval;
 import uk.co.dancetrix.util.ClassDatesParser;
-import uk.co.dancetrix.util.ClassMenuParser;
 
 import static org.junit.Assert.assertEquals;
 

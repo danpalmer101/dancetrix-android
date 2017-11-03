@@ -2,13 +2,10 @@ package uk.co.dancetrix;
 
 import org.junit.Test;
 
-import java.util.Arrays;
-
-import uk.co.dancetrix.domain.ClassDetails;
 import uk.co.dancetrix.domain.ClassMenu;
 import uk.co.dancetrix.util.ClassMenuParser;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
 
 public class ClassMenuParserTest {
 
