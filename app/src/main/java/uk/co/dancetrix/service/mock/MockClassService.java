@@ -1,4 +1,4 @@
-package uk.co.dancetrix.service.impl;
+package uk.co.dancetrix.service.mock;
 
 import android.content.Context;
 
