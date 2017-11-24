@@ -57,6 +57,13 @@ abstract class AbstractFormActivity extends AppCompatActivity {
      */
     class SingleSelectFormElement extends FormElement {
         @Override
+        public FormElement setOptions(List<String> options) {
+            super.setOptions(new ArrayList<String>());
+            super.getOptions().addAll(options);
+            return this;
+        }
+
+        @Override
         public FormElement setOptionsSelected(List<String> optionsSelected) {
             List<String> options = new ArrayList<String>() {
                 @Override

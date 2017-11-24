@@ -21,4 +21,5 @@
     </string>
     <string name="payment_let_us_know">Let us know about a payment</string>
     <string name="payment_submit">Submit payment details</string>
+    <string name="uniform_submit">Submit order</string>
 </resources>

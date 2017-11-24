@@ -19,21 +19,33 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".activity.AboutUsActivity"
-            android:parentActivityName=".activity.HomeActivity">
-            <meta-data
-                android:name="android.support.PARENT_ACTIVITY"
-                android:value=".activity.HomeActivity" />
-        </activity>
-        <activity
             android:name=".activity.PaymentActivity"
             android:parentActivityName=".activity.HomeActivity">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".activity.HomeActivity" />
         </activity>
-        <activity android:name=".activity.UniformActivity" />
-        <activity android:name=".activity.PaymentFormActivity"></activity>
+        <activity
+            android:name=".activity.PaymentFormActivity"
+            android:parentActivityName=".activity.PaymentActivity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".activity.PaymentActivity" />
+        </activity>
+        <activity
+            android:name=".activity.UniformActivity"
+            android:parentActivityName=".activity.HomeActivity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".activity.HomeActivity" />
+        </activity>
+        <activity
+            android:name=".activity.AboutUsActivity"
+            android:parentActivityName=".activity.HomeActivity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".activity.HomeActivity" />
+        </activity>
     </application>
 
 </manifest>
