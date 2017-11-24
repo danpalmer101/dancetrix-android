@@ -1,10 +1,27 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">Dance Trix</string>
-    <string name="bookClass">Book a class</string>
-    <string name="viewCalendar">View our calendar</string>
-    <string name="orderUniforms">Order uniforms</string>
-    <string name="makePayment">Make a payment</string>
-    <string name="aboutUs">About us</string>
-    <string name="visitWebsite">visit dancetrix.co.uk</string>
+    <string name="book_class">Book a class</string>
+    <string name="view_calendar">View our calendar</string>
+    <string name="order_uniforms">Order uniforms</string>
+    <string name="make_payment">Make a payment</string>
+    <string name="about_us">About us</string>
+    <string name="visit_website">visit dancetrix.co.uk</string>
+    <string name="payment_info_html">
+  <![CDATA[
+    <p>We accept payment via a number of methods:</p>
+    <p>1. Our preferred method of payment is <b>bank transfer</b> into our account:<br/>
+	<p>Sort code: 09-01-28<br/>
+	Account number: 89761875</p>
+    <p>2. You can pay via <b>PayPal</b> using our email address (dancetrix@yahoo.co.uk) as the payee.</p>
+    <p>3. You can pay via <b>credit/debit card</b> by calling either one of us on the numbers on the contact page (please note that there is a 3% transaction fee for this).</p>
+    <p>4. You can pay before the class is attended or goods are received in <b>cash</b>.</p>
+    <p>Once you have completed the transaction, please let us know with the button below.</p>
+    <p>Once you have completed the transaction, please let us know with the button below.</p>
+    <p>Once you have completed the transaction, please let us know with the button below.</p>
+    <p>Once you have completed the transaction, please let us know with the button below.</p>
+    <p>Once you have completed the transaction, please let us know with the button below.</p>
+  ]]>
+    </string>
+    <string name="payment_let_us_know">Let us know about a payment</string>
 </resources>

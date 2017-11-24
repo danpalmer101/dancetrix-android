@@ -14,7 +14,7 @@
         android:elevation="4dp"
         android:theme="@style/ThemeOverlay.AppCompat.ActionBar"
         app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
-        app:title="@string/aboutUs" />
+        app:title="@string/about_us" />
 
     <WebView
         android:id="@+id/about_us_web"
