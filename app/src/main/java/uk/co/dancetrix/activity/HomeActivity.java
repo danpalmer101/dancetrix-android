@@ -17,6 +17,22 @@ public class HomeActivity extends AppCompatActivity {
         setContentView(R.layout.activity_home);
     }
 
+    public void displayBookings(View view) {
+        // TODO
+    }
+
+    public void displayCalendar(View view) {
+        // TODO
+    }
+
+    public void displayPayment(View view) {
+        startActivity(new Intent(this, PaymentActivity.class));
+    }
+
+    public void displayUniforms(View view) {
+        // TODO
+    }
+
     public void displayAboutUs(View view) {
         startActivity(new Intent(this, AboutUsActivity.class));
     }
