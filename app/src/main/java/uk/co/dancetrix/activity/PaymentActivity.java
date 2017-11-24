@@ -1,7 +1,6 @@
 package uk.co.dancetrix.activity;
 
 import android.content.Intent;
-import android.net.Uri;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.text.Html;
@@ -10,7 +9,6 @@ import android.view.View;
 import android.widget.TextView;
 
 import uk.co.dancetrix.R;
-import uk.co.dancetrix.util.Configuration;
 
 public class PaymentActivity extends AppCompatActivity {
 
@@ -25,7 +23,7 @@ public class PaymentActivity extends AppCompatActivity {
     }
 
     public void displayPaymentLetUsKnow(View view) {
-        // TODO
+        startActivity(new Intent(this, PaymentFormActivity.class));
     }
 
 }

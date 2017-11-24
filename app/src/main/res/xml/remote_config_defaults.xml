@@ -4,4 +4,8 @@
         <key>dancetrix_website</key>
         <value>http://www.dancetrix.co.uk</value>
     </entry>
+    <entry>
+        <key>dancetrix_uniform_catalog</key>
+        <value>http://dancetrix.co.uk/wp-content/uploads/2016/05/Dance-Trix-Catalogue.pdf</value>
+    </entry>
 </defaultsMap>

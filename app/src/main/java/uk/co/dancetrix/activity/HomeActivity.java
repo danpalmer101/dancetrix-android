@@ -30,7 +30,7 @@ public class HomeActivity extends AppCompatActivity {
     }
 
     public void displayUniforms(View view) {
-        // TODO
+        startActivity(new Intent(this, UniformActivity.class));
     }
 
     public void displayAboutUs(View view) {

@@ -26,7 +26,7 @@ public class AboutUsActivity extends AppCompatActivity {
                             + "document.body.style.background = '#303030'; "
                             + "document.body.style.color = 'white'";
 
-        final WebView webView = findViewById(R.id.about_us_web);
+        final WebView webView = findViewById(R.id.aboutUsWebView);
         webView.setWebViewClient(new WebViewClient() {
             @Override
             public void onPageFinished(WebView view, String url) {

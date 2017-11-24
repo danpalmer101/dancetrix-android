@@ -26,6 +26,12 @@ public class Configuration {
         return getRemoteConfig("dancetrix_website");
     }
 
+    // Remote config - uniform catalog
+
+    public static String getUniformCatalog() {
+        return getRemoteConfig("dancetrix_uniform_catalog");
+    }
+
     // Tools
 
     private static String getRemoteConfig(String key) {

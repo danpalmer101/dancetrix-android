@@ -17,11 +17,8 @@
     <p>3. You can pay via <b>credit/debit card</b> by calling either one of us on the numbers on the contact page (please note that there is a 3% transaction fee for this).</p>
     <p>4. You can pay before the class is attended or goods are received in <b>cash</b>.</p>
     <p>Once you have completed the transaction, please let us know with the button below.</p>
-    <p>Once you have completed the transaction, please let us know with the button below.</p>
-    <p>Once you have completed the transaction, please let us know with the button below.</p>
-    <p>Once you have completed the transaction, please let us know with the button below.</p>
-    <p>Once you have completed the transaction, please let us know with the button below.</p>
   ]]>
     </string>
     <string name="payment_let_us_know">Let us know about a payment</string>
+    <string name="payment_submit">Submit payment details</string>
 </resources>
