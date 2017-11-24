@@ -6,7 +6,6 @@ import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.TextUtils;
-import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.LinearLayout;
@@ -26,7 +25,6 @@ import uk.co.dancetrix.R;
 
 public class PaymentFormActivity extends AppCompatActivity {
 
-    private LinearLayout formLayout;
     private FormBuilder formBuilder;
 
     @Override
@@ -34,7 +32,8 @@ public class PaymentFormActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_payment_form);
 
-        this.formLayout = findViewById(R.id.paymentFormContainer);
+        LinearLayout formLayout = findViewById(R.id.paymentFormContainer);
+
         this.formBuilder = new FormBuilder(this, formLayout);
 
         List<FormObject> formObjects = new ArrayList<>();
@@ -130,11 +129,13 @@ public class PaymentFormActivity extends AppCompatActivity {
                             }
                         }
                         boolean isValid = formBuilder.validate();
+
+                        // TODO submit
                     }
                 })
         );
 
-        formBuilder.build(formObjects);
+        this.formBuilder.build(formObjects);
 
         // HACK : Make sure the correct views are set in the viewMap
         // https://github.com/dariopellegrini/FormBuilder/issues/3
@@ -143,11 +144,11 @@ public class PaymentFormActivity extends AppCompatActivity {
             if (view instanceof TextInputLayout) {
                 TextInputLayout inputLayout = (TextInputLayout)view;
 
-                for (FormElement e : formBuilder.formMap.values()) {
+                for (FormElement e : this.formBuilder.formMap.values()) {
                     if (e.getHint() != null
                             && inputLayout.getHint() != null
                             && e.getHint().equals(inputLayout.getHint())) {
-                        formBuilder.viewMap.put(e.getTagOrToString(), inputLayout.getEditText());
+                        this.formBuilder.viewMap.put(e.getTagOrToString(), inputLayout.getEditText());
                         break;
                     }
                 }
@@ -183,7 +184,7 @@ public class PaymentFormActivity extends AppCompatActivity {
 
         private FormElement formElement;
 
-        public RequiredSelectFormValidation(FormElement formElement) {
+        RequiredSelectFormValidation(FormElement formElement) {
             this.formElement = formElement;
         }
 
