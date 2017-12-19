@@ -1,8 +1,11 @@
 package uk.co.dancetrix.activity;
 
+import android.app.Activity;
+import android.content.Intent;
 import android.graphics.Color;
 import android.support.v4.content.ContextCompat;
 import android.os.Bundle;
+import android.util.Log;
 import android.widget.LinearLayout;
 
 import com.dariopellegrini.formbuilder.FormBuilder;
@@ -11,13 +14,22 @@ import com.dariopellegrini.formbuilder.FormElement;
 import com.dariopellegrini.formbuilder.FormHeader;
 import com.dariopellegrini.formbuilder.FormObject;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Locale;
 
 import uk.co.dancetrix.R;
+import uk.co.dancetrix.service.Callback;
+import uk.co.dancetrix.service.ServiceLocator;
+import uk.co.dancetrix.util.Notification;
 
 public class PaymentFormActivity extends AbstractFormActivity {
+
+    private static final SimpleDateFormat DATE_FORMAT =
+            new SimpleDateFormat("dd/MM/yyyy", Locale.getDefault());
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -25,6 +37,8 @@ public class PaymentFormActivity extends AbstractFormActivity {
         setContentView(R.layout.activity_payment_form);
 
         LinearLayout formLayout = findViewById(R.id.paymentFormContainer);
+
+        final Activity current = this;
 
         this.formBuilder = new FormBuilder(this, formLayout);
 
@@ -59,7 +73,7 @@ public class PaymentFormActivity extends AbstractFormActivity {
                 .setTag("date")
                 .setHint("Date")
                 .setType(FormElement.Type.DATE)
-                .setDateFormat("dd-MM-yyyy")
+                .setDateFormat(DATE_FORMAT.toLocalizedPattern())
                 .setRequired(true)
                 .setErrorMessage("Required")
         );
@@ -118,7 +132,45 @@ public class PaymentFormActivity extends AbstractFormActivity {
 
                         boolean isValid = formBuilder.validate();
 
-                        // TODO submit
+                        if (isValid) {
+                            try {
+                                ServiceLocator.PAYMENT_SERVICE.notify(
+                                        DATE_FORMAT.parse(formBuilder.formMap.get("date").getValue()),
+                                        Double.parseDouble(formBuilder.formMap.get("amount").getValue()),
+                                        formBuilder.formMap.get("name").getValue(),
+                                        formBuilder.formMap.get("student_name").getValue(),
+                                        formBuilder.formMap.get("email").getValue(),
+                                        formBuilder.formMap.get("method").getValue(),
+                                        formBuilder.formMap.get("reason").getValue(),
+                                        formBuilder.formMap.get("additional").getValue(),
+                                        new Callback<Boolean, Exception>() {
+                                            @Override
+                                            public void onSuccess(Boolean response) {
+                                                Intent intent = new Intent(current, HomeActivity.class);
+                                                intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                                                Notification.setNotificationInIntent(
+                                                        intent,
+                                                        R.string.payment_submit_success,
+                                                        Notification.SUCCESS_BG_COLOR,
+                                                        Notification.SUCCESS_TXT_COLOR);
+                                                current.startActivity(intent);
+                                            }
+
+                                            @Override
+                                            public void onError(Exception exception) {
+                                                Log.w("Payment", "Error submitting the payment details", exception);
+
+                                                Notification.showNotification(current,
+                                                        R.id.activity_payment_form,
+                                                        R.string.payment_submit_error,
+                                                        Notification.ERROR_BG_COLOR,
+                                                        Notification.ERROR_TXT_COLOR);
+                                            }
+                                        });
+                            } catch (ParseException e) {
+                                // TODO display error
+                            }
+                        }
                     }
                 })
         );

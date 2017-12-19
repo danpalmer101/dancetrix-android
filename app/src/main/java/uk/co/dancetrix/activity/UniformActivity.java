@@ -1,8 +1,11 @@
 package uk.co.dancetrix.activity;
 
+import android.app.Activity;
+import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v4.content.ContextCompat;
+import android.util.Log;
 import android.widget.LinearLayout;
 
 import com.dariopellegrini.formbuilder.FormBuilder;
@@ -13,27 +16,23 @@ import com.dariopellegrini.formbuilder.FormObject;
 
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Collections;
+import java.util.LinkedHashMap;
 import java.util.List;
+import java.util.Map;
 
 import uk.co.dancetrix.R;
 import uk.co.dancetrix.domain.UniformGroup;
 import uk.co.dancetrix.domain.UniformItem;
+import uk.co.dancetrix.service.Callback;
+import uk.co.dancetrix.service.ServiceLocator;
+import uk.co.dancetrix.util.Notification;
 
 public class UniformActivity extends AbstractFormActivity {
 
-    private List<UniformGroup> groups = Arrays.asList(
-            new UniformGroup("A", Arrays.asList(
-                    new UniformItem("a1", "1", Collections.<String>emptyList()),
-                    new UniformItem("a2", "2", Collections.<String>emptyList()),
-                    new UniformItem("a3", "3", Arrays.asList("X", "Y", "Z"))
-            )),
-            new UniformGroup("B", Arrays.asList(
-                    new UniformItem("b1", "1", Collections.<String>emptyList()),
-                    new UniformItem("b2", "2", Arrays.asList("X", "Y", "Z")),
-                    new UniformItem("b3", "3", Collections.<String>emptyList())
-            ))
-    );
+    private static final String NO = "No";
+    private static final String YES = "Yes";
+
+    private List<UniformGroup> groups;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,6 +40,10 @@ public class UniformActivity extends AbstractFormActivity {
         setContentView(R.layout.activity_uniform);
 
         LinearLayout formLayout = findViewById(R.id.paymentFormContainer);
+
+        final Activity current = this;
+
+        this.groups = ServiceLocator.UNIFORM_SERVICE.getUniformOrderItems();
 
         this.formBuilder = new FormBuilder(this, formLayout);
 
@@ -70,7 +73,7 @@ public class UniformActivity extends AbstractFormActivity {
                 .setErrorMessage("Required")
         );
 
-        for (UniformGroup group : groups) {
+        for (UniformGroup group : this.groups) {
             formObjects.add(new FormHeader().setTitle(group.getName()));
             for (UniformItem item : group.getItems()) {
                 if (item.getSizes() == null || item.getSizes().isEmpty()) {
@@ -79,11 +82,11 @@ public class UniformActivity extends AbstractFormActivity {
                             .setTag(item.getKey())
                             .setHint(item.getName())
                             .setType(FormElement.Type.SELECTION)
-                            .setOptions(Arrays.asList("No", "Yes"))
+                            .setOptions(Arrays.asList(NO, YES))
                     );
                 } else {
                     List<String> sizes = new ArrayList<>();
-                    sizes.add("No");
+                    sizes.add(NO);
                     sizes.addAll(item.getSizes());
 
                     FormElement element = new SingleSelectFormElement();
@@ -96,6 +99,32 @@ public class UniformActivity extends AbstractFormActivity {
                 }
             }
         }
+
+        formObjects.add(new FormHeader().setTitle("Payment"));
+
+        FormElement paymentMade = new SingleSelectFormElement();
+        formObjects.add(paymentMade
+                .setTag("payment_made")
+                .setHint("Payment made?")
+                .setType(FormElement.Type.SELECTION)
+                .setOptions(Arrays.asList(NO, YES))
+                .setFormValidation(new RequiredSelectFormValidation(paymentMade))
+                .setErrorMessage("Required")
+        );
+
+        FormElement method = new SingleSelectFormElement();
+        formObjects.add(method
+                .setTag("method")
+                .setHint("Method")
+                .setType(FormElement.Type.SELECTION)
+                .setOptions(Arrays.asList(
+                        "Bank transfer",
+                        "PayPal",
+                        "Credit/Debit card",
+                        "Cash"))
+                .setFormValidation(new RequiredSelectFormValidation(method))
+                .setErrorMessage("Required")
+        );
 
         formObjects.add(new FormHeader().setTitle("Anything else we should know?"));
         formObjects.add(new FormElement()
@@ -114,7 +143,54 @@ public class UniformActivity extends AbstractFormActivity {
 
                         boolean isValid = formBuilder.validate();
 
-                        // TODO submit
+                        if (isValid) {
+                            Map<UniformItem, String> orderItems = new LinkedHashMap<>();
+
+                            for (UniformGroup group : groups) {
+                                for (UniformItem item : group.getItems()) {
+                                    if (formBuilder.formMap.containsKey(item.getKey())) {
+                                        String value = formBuilder.formMap.get(item.getKey()).getValue();
+                                        if (value != null && !value.equals(NO)) {
+                                            orderItems.put(item, value);
+                                        }
+                                    }
+                                }
+                            }
+
+                            ServiceLocator.UNIFORM_SERVICE.orderUniform(
+                                    formBuilder.formMap.get("name").getValue(),
+                                    formBuilder.formMap.get("student_name").getValue(),
+                                    formBuilder.formMap.get("email").getValue(),
+                                    null,
+                                    YES.equals(formBuilder.formMap.get("payment_made").getValue()),
+                                    formBuilder.formMap.get("method").getValue(),
+                                    formBuilder.formMap.get("additional").getValue(),
+                                    orderItems,
+                                    new Callback<Boolean, Exception>() {
+                                        @Override
+                                        public void onSuccess(Boolean response) {
+                                            Intent intent = new Intent(current, HomeActivity.class);
+                                            intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                                            Notification.setNotificationInIntent(
+                                                    intent,
+                                                    R.string.uniform_submit_success,
+                                                    Notification.SUCCESS_BG_COLOR,
+                                                    Notification.SUCCESS_TXT_COLOR);
+                                            current.startActivity(intent);
+                                        }
+
+                                        @Override
+                                        public void onError(Exception exception) {
+                                            Log.w("Uniform", "Error submitting the uniform order", exception);
+
+                                            Notification.showNotification(current,
+                                                    R.id.activity_uniform,
+                                                    R.string.uniform_submit_error,
+                                                    Notification.ERROR_BG_COLOR,
+                                                    Notification.ERROR_TXT_COLOR);
+                                        }
+                                    });
+                        }
                     }
                 })
         );

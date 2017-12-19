@@ -8,6 +8,7 @@ import android.view.View;
 
 import uk.co.dancetrix.R;
 import uk.co.dancetrix.util.Configuration;
+import uk.co.dancetrix.util.Notification;
 
 public class HomeActivity extends AppCompatActivity {
 
@@ -15,6 +16,13 @@ public class HomeActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+
+        Notification.showNotificationFromIntent(this, R.id.activity_home);
     }
 
     public void displayBookings(View view) {
