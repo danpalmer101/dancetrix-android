@@ -1,6 +1,22 @@
 <?xml version="1.0" encoding="utf-8"?>
 <defaultsMap>
     <entry>
+        <key>email_address_payment_from</key>
+        <value>Dance Trix Payments &lt;payments@dancetrix.co.uk&gt;</value>
+    </entry>
+    <entry>
+        <key>email_address_booking_from</key>
+        <value>Dance Trix Bookings &lt;bookings@dancetrix.co.uk&gt;</value>
+    </entry>
+    <entry>
+        <key>email_address_uniform_from</key>
+        <value>Dance Trix Uniforms &lt;uniforms@dancetrix.co.uk&gt;</value>
+    </entry>
+    <entry>
+        <key>email_address_to</key>
+        <value>d.palmer101@googlemail.com</value>
+    </entry>
+    <entry>
         <key>dancetrix_website</key>
         <value>http://www.dancetrix.co.uk</value>
     </entry>
