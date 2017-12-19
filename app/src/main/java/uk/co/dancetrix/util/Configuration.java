@@ -56,6 +56,16 @@ public class Configuration {
         return isTrue(getRemoteConfig("feature_about"));
     }
 
+    // Mailgun
+
+    public static String mailgunDomain() {
+        return getRemoteConfig("mailgun_domain");
+    }
+
+    public static String mailgunApiKey() {
+        return getRemoteConfig("mailgun_api_key");
+    }
+
     // Tools
 
     private static boolean isTrue(String value) {

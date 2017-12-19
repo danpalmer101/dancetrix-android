@@ -1,6 +1,7 @@
 package uk.co.dancetrix.service.mock;
 
 import android.content.Context;
+import android.util.Log;
 
 import java.util.List;
 
@@ -24,6 +25,8 @@ public class MockClassService implements ClassService {
 
             callback.onSuccess(ClassMenuParser.parse(csv));
         } catch (Exception e) {
+            Log.e("Classes", "Error reading class menu", e);
+
             callback.onError(e);
         }
     }
@@ -42,6 +45,8 @@ public class MockClassService implements ClassService {
 
             callback.onSuccess(ClassDatesParser.parse(csv));
         } catch (Exception e) {
+            Log.e("Classes", "Error reading class dates", e);
+
             callback.onError(e);
         }
     }
@@ -60,6 +65,8 @@ public class MockClassService implements ClassService {
 
             callback.onSuccess(text);
         } catch (Exception e) {
+            Log.e("Classes", "Error reading class description", e);
+
             callback.onError(e);
         }
     }

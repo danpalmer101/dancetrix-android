@@ -9,6 +9,14 @@
         <value>http://dancetrix.co.uk/wp-content/uploads/2016/05/Dance-Trix-Catalogue.pdf</value>
     </entry>
     <entry>
+        <key>mailgun_domain</key>
+        <value>mg.dancetrix.co.uk</value>
+    </entry>
+    <entry>
+        <key>mailgun_api_key</key>
+        <value>key-2e89955da550daaac2207a3b48d1c338</value>
+    </entry>
+    <entry>
         <key>feature_book</key>
         <value>yes</value>
     </entry>
