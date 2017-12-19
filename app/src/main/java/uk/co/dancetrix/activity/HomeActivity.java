@@ -5,6 +5,8 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
+import android.view.ViewGroup;
+import android.view.ViewParent;
 
 import uk.co.dancetrix.R;
 import uk.co.dancetrix.util.Configuration;
@@ -16,6 +18,24 @@ public class HomeActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
+
+        removeView(R.id.bookClassButton, !Configuration.bookClassEnabled());
+        removeView(R.id.calendarButton, !Configuration.calendarEnabled());
+        removeView(R.id.makePaymentButton, !Configuration.paymentEnabled());
+        removeView(R.id.orderUniformButton, !Configuration.uniformEnabled());
+        removeView(R.id.aboutUsButton, !Configuration.aboutEnabled());
+    }
+
+    private void removeView(int id, boolean ifFlag) {
+        if (ifFlag) {
+            View view = findViewById(id);
+            if (view != null) {
+                ViewParent parent = view.getParent();
+                if (parent != null && parent instanceof ViewGroup) {
+                    ((ViewGroup) parent).removeView(view);
+                }
+            }
+        }
     }
 
     @Override

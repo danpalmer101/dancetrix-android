@@ -8,4 +8,24 @@
         <key>dancetrix_uniform_catalog</key>
         <value>http://dancetrix.co.uk/wp-content/uploads/2016/05/Dance-Trix-Catalogue.pdf</value>
     </entry>
+    <entry>
+        <key>feature_book</key>
+        <value>yes</value>
+    </entry>
+    <entry>
+        <key>feature_calendar</key>
+        <value>yes</value>
+    </entry>
+    <entry>
+        <key>feature_payment</key>
+        <value>yes</value>
+    </entry>
+    <entry>
+        <key>feature_uniform</key>
+        <value>yes</value>
+    </entry>
+    <entry>
+        <key>feature_about</key>
+        <value>yes</value>
+    </entry>
 </defaultsMap>
