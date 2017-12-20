@@ -70,7 +70,8 @@ public class MailgunEmailService implements EmailService {
                 .post(body)
                 .addHeader("Authorization",
                            "Basic " + Base64.encodeToString(
-                                   ("api:" + Configuration.mailgunApiKey()).getBytes("UTF-8"), Base64.NO_WRAP))
+                                   ("api:" + Configuration.mailgunApiKey()).getBytes("UTF-8"),
+                                   Base64.NO_WRAP))
                 .build();
 
             new OkHttpClient().newCall(request).enqueue(
@@ -84,7 +85,8 @@ public class MailgunEmailService implements EmailService {
 
                         @Override
                         public void onResponse(Call call, Response response) throws IOException {
-                            Log.d("Email", "Email response: " + response.toString() + ", Response body: " + response.body().string());
+                            Log.d("Email", "Email response: " + response.toString()
+                                    + ", Response body: " + response.body().string());
 
                             callback.onSuccess(true);
                         }
