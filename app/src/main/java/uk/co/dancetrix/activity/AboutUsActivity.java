@@ -11,7 +11,12 @@ import android.webkit.WebViewClient;
 import uk.co.dancetrix.R;
 import uk.co.dancetrix.util.Configuration;
 
-public class AboutUsActivity extends AppCompatActivity {
+public class AboutUsActivity extends BaseActivity {
+
+    @Override
+    protected int getMainId() {
+        return R.id.activity_about;
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

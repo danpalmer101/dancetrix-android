@@ -10,7 +10,12 @@ import android.widget.TextView;
 
 import uk.co.dancetrix.R;
 
-public class PaymentActivity extends AppCompatActivity {
+public class PaymentActivity extends BaseActivity {
+
+    @Override
+    protected int getMainId() {
+        return R.id.activity_payment_details;
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

@@ -1,6 +1,7 @@
 package uk.co.dancetrix.activity;
 
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -10,9 +11,15 @@ import android.view.ViewParent;
 
 import uk.co.dancetrix.R;
 import uk.co.dancetrix.util.Configuration;
+import uk.co.dancetrix.util.NetworkChangeReceiver;
 import uk.co.dancetrix.util.Notification;
 
-public class HomeActivity extends AppCompatActivity {
+public class HomeActivity extends BaseActivity {
+
+    @Override
+    protected int getMainId() {
+        return R.id.activity_home;
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,13 +43,6 @@ public class HomeActivity extends AppCompatActivity {
                 }
             }
         }
-    }
-
-    @Override
-    protected void onResume() {
-        super.onResume();
-
-        Notification.showNotificationFromIntent(this, R.id.activity_home);
     }
 
     public void displayBookings(View view) {

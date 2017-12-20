@@ -1,6 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">Dance Trix</string>
+    <string name="network_not_connected">No internet connection, some features may not be available</string>
+    <string name="network_wifi">Connected to a Wi-Fi network</string>
+    <string name="network_mobile">Connected to a mobile data network</string>
     <string name="book_class">Book a class</string>
     <string name="view_calendar">View our calendar</string>
     <string name="order_uniforms">Order uniforms</string>

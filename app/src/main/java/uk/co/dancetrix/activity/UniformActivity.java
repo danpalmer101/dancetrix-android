@@ -35,6 +35,11 @@ public class UniformActivity extends AbstractFormActivity {
     private List<UniformGroup> groups;
 
     @Override
+    protected int getMainId() {
+        return R.id.activity_uniform;
+    }
+
+    @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_uniform);

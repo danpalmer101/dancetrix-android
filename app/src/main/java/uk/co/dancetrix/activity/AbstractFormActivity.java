@@ -14,7 +14,7 @@ import com.dariopellegrini.formbuilder.FormValidation;
 import java.util.ArrayList;
 import java.util.List;
 
-abstract class AbstractFormActivity extends AppCompatActivity {
+abstract class AbstractFormActivity extends BaseActivity {
 
     protected FormBuilder formBuilder;
 

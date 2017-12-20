@@ -1,5 +1,6 @@
 package uk.co.dancetrix.util;
 
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.remoteconfig.FirebaseRemoteConfig;
 import com.google.firebase.remoteconfig.FirebaseRemoteConfigSettings;
 
@@ -18,8 +19,13 @@ public class Configuration {
                         .setDeveloperModeEnabled(BuildConfig.DEBUG)
                         .build();
         FirebaseRemoteConfig.getInstance().setConfigSettings(configSettings);
-
         FirebaseRemoteConfig.getInstance().setDefaults(R.xml.remote_config_defaults);
+        FirebaseRemoteConfig.getInstance().fetch().addOnSuccessListener(new OnSuccessListener<Void>() {
+            @Override
+            public void onSuccess(Void aVoid) {
+                FirebaseRemoteConfig.getInstance().activateFetched();
+            }
+        });
     }
 
     // Remote config - website
@@ -69,11 +75,7 @@ public class Configuration {
     // Tools
 
     private static boolean isTrue(String value) {
-        if (value == null) {
-            return false;
-        } else {
-            return Arrays.asList("yes", "true", "1").contains(value.toLowerCase());
-        }
+        return value != null && Arrays.asList("yes", "true", "1").contains(value.toLowerCase());
     }
 
     private static String getRemoteConfig(String key) {

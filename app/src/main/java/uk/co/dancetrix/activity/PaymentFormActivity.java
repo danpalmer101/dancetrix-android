@@ -32,6 +32,11 @@ public class PaymentFormActivity extends AbstractFormActivity {
             new SimpleDateFormat("dd/MM/yyyy", Locale.getDefault());
 
     @Override
+    protected int getMainId() {
+        return R.id.activity_payment_form;
+    }
+
+    @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_payment_form);
