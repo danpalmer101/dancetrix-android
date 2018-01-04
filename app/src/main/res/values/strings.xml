@@ -29,5 +29,7 @@
     <string name="uniform_submit">Submit order</string>
     <string name="uniform_submit_success">Success! Your uniform order has been sent</string>
     <string name="uniform_submit_error">Sorry, something has gone wrong submitting your uniform order</string>
-    <string name="class_menu_error">Sorry, something has gone loading classes</string>
+    <string name="booking_class_dates">Book dates</string>
+    <string name="booking_class_dates_error">Sorry, something has gone wrong loading dates for this class</string>
+    <string name="booking_class_menu_error">Sorry, something has gone wrong loading classes</string>
 </resources>

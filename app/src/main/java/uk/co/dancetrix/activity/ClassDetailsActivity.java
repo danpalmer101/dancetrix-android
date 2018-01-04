@@ -2,6 +2,7 @@ package uk.co.dancetrix.activity;
 
 import android.app.Activity;
 import android.os.Bundle;
+import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
@@ -43,7 +44,7 @@ public class ClassDetailsActivity extends BaseActivity {
             Notification.showNotification(
                     this,
                     getMainId(),
-                    R.string.class_menu_error,
+                    R.string.booking_class_dates_error,
                     Notification.WARNING_BG_COLOR,
                     Notification.WARNING_TXT_COLOR);
         } else {
@@ -71,12 +72,16 @@ public class ClassDetailsActivity extends BaseActivity {
                     Notification.showNotification(
                             current,
                             getMainId(),
-                            R.string.class_menu_error,
+                            R.string.booking_class_dates_error,
                             Notification.WARNING_BG_COLOR,
                             Notification.WARNING_TXT_COLOR);
                 }
             });
         }
+    }
+
+    public void bookDates(View view) {
+
     }
 
 }

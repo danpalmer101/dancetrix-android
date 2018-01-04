@@ -36,7 +36,7 @@ public class ClassMenuActivity extends BaseActivity {
             Notification.showNotification(
                     this,
                     getMainId(),
-                    R.string.class_menu_error,
+                    R.string.booking_class_menu_error,
                     Notification.WARNING_BG_COLOR,
                     Notification.WARNING_TXT_COLOR);
         } else {
