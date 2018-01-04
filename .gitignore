@@ -7,3 +7,5 @@
 /build
 /captures
 .externalNativeBuild
+fastlane/installer
+fastlane/report.xml
