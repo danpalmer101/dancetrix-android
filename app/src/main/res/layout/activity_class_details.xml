@@ -25,6 +25,20 @@
 
     </android.support.v7.widget.Toolbar>
 
+    <TextView
+        android:id="@+id/classInfoView"
+        android:layout_width="0dp"
+        android:layout_height="150dp"
+        android:layout_margin="20dp"
+        android:layout_marginBottom="8dp"
+        android:maxLines="100"
+        android:scrollbars="vertical"
+        android:text=""
+        android:textSize="18sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/toolbar" />
+
     <ListView
         android:id="@+id/classDatesList"
         android:layout_width="0dp"
@@ -32,7 +46,7 @@
         app:layout_constraintBottom_toTopOf="@+id/bookClassDatesButton"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/toolbar">
+        app:layout_constraintTop_toBottomOf="@+id/classInfoView">
 
     </ListView>
 

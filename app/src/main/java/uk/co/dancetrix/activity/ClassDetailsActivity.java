@@ -2,18 +2,16 @@ package uk.co.dancetrix.activity;
 
 import android.app.Activity;
 import android.os.Bundle;
+import android.text.method.ScrollingMovementMethod;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
-import android.widget.Button;
 import android.widget.ListView;
+import android.widget.TextView;
 
-import java.util.Date;
 import java.util.List;
 
 import uk.co.dancetrix.R;
 import uk.co.dancetrix.domain.ClassDetails;
-import uk.co.dancetrix.domain.ClassMenu;
 import uk.co.dancetrix.domain.DateInterval;
 import uk.co.dancetrix.service.Callback;
 import uk.co.dancetrix.service.ServiceLocator;
@@ -75,6 +73,20 @@ public class ClassDetailsActivity extends BaseActivity {
                             R.string.booking_class_dates_error,
                             Notification.WARNING_BG_COLOR,
                             Notification.WARNING_TXT_COLOR);
+                }
+            });
+
+            ServiceLocator.CLASS_SERVICE.getClassDescription(this, classDetails, new Callback<String, Exception>() {
+                @Override
+                public void onSuccess(String response) {
+                    TextView textView = findViewById(R.id.classInfoView);
+                    textView.setText(response);
+                    textView.setMovementMethod(new ScrollingMovementMethod());
+                }
+
+                @Override
+                public void onError(Exception exception) {
+                    // Do nothing
                 }
             });
         }
