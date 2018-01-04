@@ -21,5 +21,6 @@ lane :beta do
   crashlytics(
     api_token: "",
     build_secret: ""
+    emails: [""]
   )
 end

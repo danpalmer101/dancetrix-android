@@ -9,6 +9,9 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.ViewParent;
 
+import com.crashlytics.android.Crashlytics;
+
+import io.fabric.sdk.android.Fabric;
 import uk.co.dancetrix.R;
 import uk.co.dancetrix.domain.ClassMenu;
 import uk.co.dancetrix.service.Callback;
@@ -27,6 +30,8 @@ public class HomeActivity extends BaseActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
+
+        Fabric.with(this, new Crashlytics());
 
         //removeView(R.id.bookClassButton, !Configuration.bookClassEnabled());
         removeView(R.id.calendarButton, !Configuration.calendarEnabled());

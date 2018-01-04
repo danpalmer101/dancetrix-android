@@ -1,19 +1,44 @@
 apply plugin: 'com.android.application'
 
 android {
-    compileSdkVersion 26
-    defaultConfig {
-        applicationId "uk.co.dancetrix"
-        minSdkVersion 21
-        targetSdkVersion 26
-        versionCode 1
-        versionName "1.0"
-        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+    signingConfigs {
+        debug {
+            keyAlias 'debug'
+            keyPassword 'password'
+            storeFile file('keystore.jks')
+            storePassword 'password'
+        }
     }
+    compileSdkVersion 26
+
+    def versionPropsFile = file('version.properties')
+
+    if (versionPropsFile.canRead()) {
+        def Properties versionProps = new Properties()
+
+        versionProps.load(new FileInputStream(versionPropsFile))
+
+        def vCode = versionProps['VERSION_CODE'].toInteger()
+        def vName = versionProps['VERSION_NAME']
+
+        defaultConfig {
+            applicationId "uk.co.dancetrix"
+            minSdkVersion 21
+            targetSdkVersion 26
+            versionCode vCode
+            versionName vName
+            testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+        }
+    }
+    else {
+        throw new GradleException("Could not read version.properties!")
+    }
+
     buildTypes {
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            signingConfig signingConfigs.debug
         }
     }
     testOptions {
@@ -22,7 +47,7 @@ android {
 }
 
 dependencies {
-    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    implementation fileTree(include: ['*.jar'], dir: 'libs')
     implementation 'com.android.support:appcompat-v7:26.1.0'
     implementation 'com.android.support.constraint:constraint-layout:1.0.2'
     testImplementation 'junit:junit:4.12'
@@ -34,6 +59,10 @@ dependencies {
     compile 'com.github.dariopellegrini:FormBuilder:v0.9'
     compile 'com.squareup.okhttp3:okhttp:3.9.1'
     compile 'com.samskivert:jmustache:1.14'
+    compile('com.crashlytics.sdk.android:crashlytics:2.8.0@aar') {
+        transitive = true;
+    }
 }
 
 apply plugin: 'com.google.gms.google-services'
+apply plugin: 'io.fabric'

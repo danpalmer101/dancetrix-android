@@ -9,3 +9,4 @@
 .externalNativeBuild
 fastlane/installer
 fastlane/report.xml
+app/release
