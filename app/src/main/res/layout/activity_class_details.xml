@@ -43,6 +43,8 @@
         android:id="@+id/classDatesList"
         android:layout_width="0dp"
         android:layout_height="0dp"
+        android:paddingTop="10dp"
+        android:paddingBottom="10dp"
         app:layout_constraintBottom_toTopOf="@+id/bookClassDatesButton"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
