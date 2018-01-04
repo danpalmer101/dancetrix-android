@@ -10,4 +10,5 @@ dsym_plist="$DWARF_DSYM_FOLDER_PATH/$DWARF_DSYM_FILE_NAME/Contents/Info.plist"
 echo $number_of_commits
 echo ${git_release_version#*v}
 
-echo "VERSION_CODE=$number_of_commits\nVERSION_NAME=${git_release_version#*v}" > version.properties
+echo "VERSION_CODE=$number_of_commits" > version.properties
+echo "VERSION_NAME=${git_release_version#*v}" >> version.properties
