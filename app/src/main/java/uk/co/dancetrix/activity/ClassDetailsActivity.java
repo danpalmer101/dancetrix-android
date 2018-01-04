@@ -3,11 +3,13 @@ package uk.co.dancetrix.activity;
 import android.app.Activity;
 import android.os.Bundle;
 import android.text.method.ScrollingMovementMethod;
+import android.util.SparseBooleanArray;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import uk.co.dancetrix.R;
@@ -21,8 +23,10 @@ public class ClassDetailsActivity extends BaseActivity {
 
     public static final String INTENT_KEY_CLASS_DETAILS = "class_details";
 
-    ListView listView;
-    ArrayAdapter<DateInterval> adapter;
+    private ClassDetails classDetails;
+
+    private ListView listView;
+    private ArrayAdapter<DateInterval> adapter;
 
     @Override
     protected int getMainId() {
@@ -36,7 +40,7 @@ public class ClassDetailsActivity extends BaseActivity {
 
         listView = findViewById(R.id.classDatesList);
 
-        final ClassDetails classDetails = (ClassDetails) getIntent().getSerializableExtra(INTENT_KEY_CLASS_DETAILS);
+        classDetails = (ClassDetails) getIntent().getSerializableExtra(INTENT_KEY_CLASS_DETAILS);
 
         if (classDetails == null) {
             Notification.showNotification(
@@ -93,7 +97,20 @@ public class ClassDetailsActivity extends BaseActivity {
     }
 
     public void bookDates(View view) {
+        List<DateInterval> selectedDates = new ArrayList<>();
 
+        if (classDetails.isAllowIndividualBookings()) {
+            SparseBooleanArray checked = listView.getCheckedItemPositions();
+            for (int i = 0; i < checked.size(); i++) {
+                int pos = checked.keyAt(i);
+
+                selectedDates.add(adapter.getItem(pos));
+            }
+        } else {
+            for (int i = 0; i < adapter.getCount(); i++) {
+                selectedDates.add(adapter.getItem(i));
+            }
+        }
     }
 
 }
