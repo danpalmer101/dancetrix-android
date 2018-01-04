@@ -1,8 +1,9 @@
 package uk.co.dancetrix.domain;
 
+import java.io.Serializable;
 import java.util.List;
 
-public class ClassMenu {
+public class ClassMenu implements Serializable {
 
     private final String name;
     private final List<ClassMenu> children;

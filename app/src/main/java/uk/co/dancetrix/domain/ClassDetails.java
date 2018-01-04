@@ -1,6 +1,8 @@
 package uk.co.dancetrix.domain;
 
-public class ClassDetails {
+import java.io.Serializable;
+
+public class ClassDetails implements Serializable {
 
     private final String id;
     private final String path;

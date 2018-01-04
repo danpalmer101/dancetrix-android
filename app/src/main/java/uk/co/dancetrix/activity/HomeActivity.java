@@ -1,17 +1,19 @@
 package uk.co.dancetrix.activity;
 
+import android.app.Activity;
 import android.content.Intent;
-import android.content.IntentFilter;
 import android.net.Uri;
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.ViewParent;
 
 import uk.co.dancetrix.R;
+import uk.co.dancetrix.domain.ClassMenu;
+import uk.co.dancetrix.service.Callback;
+import uk.co.dancetrix.service.ServiceLocator;
 import uk.co.dancetrix.util.Configuration;
-import uk.co.dancetrix.util.NetworkChangeReceiver;
 import uk.co.dancetrix.util.Notification;
 
 public class HomeActivity extends BaseActivity {
@@ -26,7 +28,7 @@ public class HomeActivity extends BaseActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
 
-        removeView(R.id.bookClassButton, !Configuration.bookClassEnabled());
+        //removeView(R.id.bookClassButton, !Configuration.bookClassEnabled());
         removeView(R.id.calendarButton, !Configuration.calendarEnabled());
         removeView(R.id.makePaymentButton, !Configuration.paymentEnabled());
         removeView(R.id.orderUniformButton, !Configuration.uniformEnabled());
@@ -46,7 +48,28 @@ public class HomeActivity extends BaseActivity {
     }
 
     public void displayBookings(View view) {
-        // TODO
+        final Activity current = this;
+
+        ServiceLocator.CLASS_SERVICE.getClassMenu(this, new Callback<ClassMenu, Exception>() {
+            @Override
+            public void onSuccess(ClassMenu response) {
+                Intent intent = new Intent(current, ClassMenuActivity.class);
+                intent.putExtra(ClassMenuActivity.INTENT_KEY_CLASS_MENU, response);
+                current.startActivity(intent);
+            }
+
+            @Override
+            public void onError(Exception exception) {
+                Log.w("Classes", "Error loading class menu", exception);
+
+                Notification.showNotification(
+                        current,
+                        getMainId(),
+                        R.string.class_menu_error,
+                        Notification.WARNING_BG_COLOR,
+                        Notification.WARNING_TXT_COLOR);
+            }
+        });
     }
 
     public void displayCalendar(View view) {

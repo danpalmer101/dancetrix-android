@@ -26,7 +26,7 @@
     </android.support.v7.widget.Toolbar>
 
     <ScrollView
-        android:id="@+id/buttonList"
+        android:id="@+id/homeButtonList"
         android:layout_width="0dp"
         android:layout_height="0dp"
         app:layout_constraintBottom_toTopOf="@+id/websiteButton"
