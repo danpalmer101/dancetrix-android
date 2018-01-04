@@ -37,7 +37,7 @@ public class ClassDetailsActivity extends BaseActivity {
 
         listView = findViewById(R.id.classDatesList);
 
-        ClassDetails classDetails = (ClassDetails) getIntent().getSerializableExtra(INTENT_KEY_CLASS_DETAILS);
+        final ClassDetails classDetails = (ClassDetails) getIntent().getSerializableExtra(INTENT_KEY_CLASS_DETAILS);
 
         if (classDetails == null) {
             Notification.showNotification(
@@ -52,8 +52,17 @@ public class ClassDetailsActivity extends BaseActivity {
             ServiceLocator.CLASS_SERVICE.getClassDates(this, classDetails, new Callback<List<DateInterval>, Exception>() {
                 @Override
                 public void onSuccess(List<DateInterval> response) {
-                    adapter = new ArrayAdapter<>(current, android.R.layout.simple_list_item_multiple_choice, response);
-                    listView.setChoiceMode(ListView.CHOICE_MODE_MULTIPLE);
+                    int layout, choiceMode;
+                    if (classDetails.isAllowIndividualBookings()) {
+                        layout = android.R.layout.simple_list_item_multiple_choice;
+                        choiceMode = ListView.CHOICE_MODE_MULTIPLE;
+                    } else {
+                        layout = android.R.layout.simple_list_item_1;
+                        choiceMode = ListView.CHOICE_MODE_NONE;
+                    }
+
+                    adapter = new ArrayAdapter<>(current, layout, response);
+                    listView.setChoiceMode(choiceMode);
                     listView.setAdapter(adapter);
                 }
 
