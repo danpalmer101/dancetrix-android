@@ -43,4 +43,9 @@ public class DateInterval {
         return TIME_FORMAT.format(date);
     }
 
+    @Override
+    public String toString() {
+        return asText();
+    }
+
 }
