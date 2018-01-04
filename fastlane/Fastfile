@@ -14,7 +14,8 @@ default_platform :android
 # don't worry, fastlane will prompt you for required
 # info which you can add here later
 lane :beta do
-  sh "cd ../app && bash set_build_number.sh"
+  sh "echo \"VERSION_CODE=$(git rev-list HEAD --count)\" > ../app/version.properties"
+  sh "echo \"VERSION_NAME=$(git describe --tags --always --abbrev=0)\" >> ../app/version.properties"
 
   # build the release variant
   build_android_app(task: "assembleRelease")
@@ -25,4 +26,8 @@ lane :beta do
     build_secret: ""
     emails: [""]
   )
+
+  sh "echo \"VERSION_CODE=0\" > ../app/version.properties"
+  sh "echo \"VERSION_NAME=0.0\" >> ../app/version.properties"
+
 end
