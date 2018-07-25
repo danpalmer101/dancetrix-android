@@ -7,6 +7,8 @@ import uk.co.dancetrix.service.mock.MockUniformService;
 
 public class ServiceLocator {
 
+    // TODO - Implement Firebase implementations
+
     public static final ClassService CLASS_SERVICE = new MockClassService();
     public static final UniformService UNIFORM_SERVICE = new MockUniformService();
     public static final PaymentService PAYMENT_SERVICE = new MockPaymentService();

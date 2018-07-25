@@ -102,10 +102,11 @@ public class ClassMenuParser extends CsvParser {
                 descriptionLocation,
                 allowIndividualBookings);
 
-        ClassMenu classMenu = new ClassMenu(name, classDetails);
+        // Last menu path element is the class itself
+        ClassMenu classMenu = new ClassMenu(menuPath[menuPath.length - 1], classDetails);
 
         // Keep embedding class level in a parent for each element of the menu path
-        for (int i = menuPath.length - 1; i >= 0; i--) {
+        for (int i = menuPath.length - 2; i >= 0; i--) {
             classMenu = new ClassMenu(menuPath[i], Collections.singletonList(classMenu));
         }
 

@@ -111,6 +111,8 @@ public class ClassDetailsActivity extends BaseActivity {
                 selectedDates.add(adapter.getItem(i));
             }
         }
+
+        // TODO
     }
 
 }

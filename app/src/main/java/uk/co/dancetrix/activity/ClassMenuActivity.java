@@ -45,7 +45,7 @@ public class ClassMenuActivity extends BaseActivity {
                 if (subMenu.getClassDetails() == null) {
                     button = createClassMenuButton(subMenu);
                 } else {
-                    button = createClassDetailsButton(subMenu.getClassDetails());
+                    button = createClassDetailsButton(subMenu);
                 }
 
                 ViewGroup linearLayout = findViewById(R.id.classMenuListLayout);
@@ -71,16 +71,16 @@ public class ClassMenuActivity extends BaseActivity {
         return button;
     }
 
-    private Button createClassDetailsButton(final ClassDetails classDetails) {
+    private Button createClassDetailsButton(final ClassMenu classMenu) {
         final Activity current = this;
 
         Button button = createDefaultButton();
-        button.setText(classDetails.getName());
+        button.setText(classMenu.getName());
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(current, ClassDetailsActivity.class);
-                intent.putExtra(ClassDetailsActivity.INTENT_KEY_CLASS_DETAILS, classDetails);
+                intent.putExtra(ClassDetailsActivity.INTENT_KEY_CLASS_DETAILS, classMenu.getClassDetails());
                 current.startActivity(intent);
             }
         });
