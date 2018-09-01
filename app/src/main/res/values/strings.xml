@@ -33,5 +33,6 @@
     <string name="booking_class_dates">Book dates</string>
     <string name="booking_class_dates_error">Sorry, something has gone wrong loading dates for this class</string>
     <string name="booking_class_menu_error">Sorry, something has gone wrong loading classes</string>
-    <string name="booking_submit">Submit booking</string>
+    <string name="booking_class_submit">Submit booking</string>
+    <string name="booking_class_success">Success! Your booking has been submitted</string>
 </resources>

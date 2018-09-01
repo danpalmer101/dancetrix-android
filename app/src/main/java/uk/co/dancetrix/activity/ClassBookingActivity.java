@@ -1,6 +1,7 @@
 package uk.co.dancetrix.activity;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v4.content.ContextCompat;
@@ -19,6 +20,7 @@ import java.util.List;
 import uk.co.dancetrix.R;
 import uk.co.dancetrix.domain.ClassDetails;
 import uk.co.dancetrix.domain.DateInterval;
+import uk.co.dancetrix.util.Notification;
 
 public class ClassBookingActivity extends AbstractFormActivity {
 
@@ -86,7 +88,7 @@ public class ClassBookingActivity extends AbstractFormActivity {
         );
 
         formObjects.add(new FormButton()
-                .setTitle(getString(R.string.booking_submit))
+                .setTitle(getString(R.string.booking_class_submit))
                 .setBackgroundColor(ContextCompat.getColor(this, R.color.colorAccent))
                 .setTextColor(Color.WHITE)
                 .setRunnable(new Runnable() {
@@ -97,7 +99,20 @@ public class ClassBookingActivity extends AbstractFormActivity {
                         boolean isValid = formBuilder.validate();
 
                         if (isValid) {
-                            // TODO - book
+                            // TODO - call service
+                            current.runOnUiThread(new Runnable() {
+                                @Override
+                                public void run() {
+                                    Intent intent = new Intent(current, HomeActivity.class);
+                                    intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                                    Notification.setNotificationInIntent(
+                                            intent,
+                                            R.string.booking_class_success,
+                                            Notification.SUCCESS_BG_COLOR,
+                                            Notification.SUCCESS_TXT_COLOR);
+                                    current.startActivity(intent);
+                                }
+                            });
                         }
                     }
                 })
