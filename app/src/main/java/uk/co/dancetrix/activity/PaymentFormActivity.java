@@ -151,14 +151,19 @@ public class PaymentFormActivity extends AbstractFormActivity {
                                         new Callback<Boolean, Exception>() {
                                             @Override
                                             public void onSuccess(Boolean response) {
-                                                Intent intent = new Intent(current, HomeActivity.class);
-                                                intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-                                                Notification.setNotificationInIntent(
-                                                        intent,
-                                                        R.string.payment_submit_success,
-                                                        Notification.SUCCESS_BG_COLOR,
-                                                        Notification.SUCCESS_TXT_COLOR);
-                                                current.startActivity(intent);
+                                                current.runOnUiThread(new Runnable() {
+                                                    @Override
+                                                    public void run() {
+                                                        Intent intent = new Intent(current, HomeActivity.class);
+                                                        intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                                                        Notification.setNotificationInIntent(
+                                                                intent,
+                                                                R.string.payment_submit_success,
+                                                                Notification.SUCCESS_BG_COLOR,
+                                                                Notification.SUCCESS_TXT_COLOR);
+                                                        current.startActivity(intent);
+                                                    }
+                                                });
                                             }
 
                                             @Override

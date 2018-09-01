@@ -1,6 +1,7 @@
 package uk.co.dancetrix.service.mock;
 
 import android.content.Context;
+import android.os.AsyncTask;
 
 import java.util.Map;
 
@@ -15,9 +16,13 @@ public class MockEmailService implements EmailService {
                           String from,
                           String to,
                           Map<String, Object> templateParameters,
-                          Callback<Boolean, Exception> callback) {
-        // Do nothing
-        callback.onSuccess(true);
+                          final Callback<Boolean, Exception> callback) {
+        AsyncTask.execute(new Runnable() {
+            @Override
+            public void run() {
+                callback.onSuccess(true);
+            }
+        });
     }
 
 }

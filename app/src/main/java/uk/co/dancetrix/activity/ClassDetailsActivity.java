@@ -54,19 +54,24 @@ public class ClassDetailsActivity extends BaseActivity {
 
             ServiceLocator.CLASS_SERVICE.getClassDates(this, classDetails, new Callback<List<DateInterval>, Exception>() {
                 @Override
-                public void onSuccess(List<DateInterval> response) {
-                    int layout, choiceMode;
-                    if (classDetails.isAllowIndividualBookings()) {
-                        layout = android.R.layout.simple_list_item_multiple_choice;
-                        choiceMode = ListView.CHOICE_MODE_MULTIPLE;
-                    } else {
-                        layout = android.R.layout.simple_list_item_1;
-                        choiceMode = ListView.CHOICE_MODE_NONE;
-                    }
+                public void onSuccess(final List<DateInterval> response) {
+                    current.runOnUiThread(new Runnable() {
+                        @Override
+                        public void run() {
+                            int layout, choiceMode;
+                            if (classDetails.isAllowIndividualBookings()) {
+                                layout = android.R.layout.simple_list_item_multiple_choice;
+                                choiceMode = ListView.CHOICE_MODE_MULTIPLE;
+                            } else {
+                                layout = android.R.layout.simple_list_item_1;
+                                choiceMode = ListView.CHOICE_MODE_NONE;
+                            }
 
-                    adapter = new ArrayAdapter<>(current, layout, response);
-                    listView.setChoiceMode(choiceMode);
-                    listView.setAdapter(adapter);
+                            adapter = new ArrayAdapter<>(current, layout, response);
+                            listView.setChoiceMode(choiceMode);
+                            listView.setAdapter(adapter);
+                        }
+                    });
                 }
 
                 @Override
@@ -82,10 +87,15 @@ public class ClassDetailsActivity extends BaseActivity {
 
             ServiceLocator.CLASS_SERVICE.getClassDescription(this, classDetails, new Callback<String, Exception>() {
                 @Override
-                public void onSuccess(String response) {
-                    TextView textView = findViewById(R.id.classInfoView);
-                    textView.setText(response);
-                    textView.setMovementMethod(new ScrollingMovementMethod());
+                public void onSuccess(final String response) {
+                    current.runOnUiThread(new Runnable() {
+                        @Override
+                        public void run() {
+                            TextView textView = findViewById(R.id.classInfoView);
+                            textView.setText(response);
+                            textView.setMovementMethod(new ScrollingMovementMethod());
+                        }
+                    });
                 }
 
                 @Override

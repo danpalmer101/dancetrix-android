@@ -26,6 +26,7 @@
     <string name="payment_submit">Submit payment details</string>
     <string name="payment_submit_success">Success! Thanks for letting us know</string>
     <string name="payment_submit_error">Sorry, something has gone wrong submitting your payment details</string>
+    <string name="uniform_load_error">Sorry, something has gone wrong loading our uniforms</string>
     <string name="uniform_submit">Submit order</string>
     <string name="uniform_submit_success">Success! Your uniform order has been sent</string>
     <string name="uniform_submit_error">Sorry, something has gone wrong submitting your uniform order</string>

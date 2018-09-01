@@ -44,13 +44,38 @@ public class UniformActivity extends AbstractFormActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_uniform);
 
-        LinearLayout formLayout = findViewById(R.id.paymentFormContainer);
-
         final Activity current = this;
 
-        this.groups = ServiceLocator.UNIFORM_SERVICE.getUniformOrderItems();
+        ServiceLocator.UNIFORM_SERVICE.getUniformOrderItems(this, new Callback<List<UniformGroup>, Exception>() {
+            @Override
+            public void onSuccess(List<UniformGroup> response) {
+                groups = response;
 
+                current.runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        buildForm();
+                    }
+                });
+            }
+
+            @Override
+            public void onError(Exception exception) {
+                Notification.showNotification(
+                        current,
+                        getMainId(),
+                        R.string.uniform_load_error,
+                        Notification.WARNING_BG_COLOR,
+                        Notification.WARNING_TXT_COLOR);
+            }
+        });
+    }
+
+    private void buildForm() {
+        LinearLayout formLayout = findViewById(R.id.paymentFormContainer);
         this.formBuilder = new FormBuilder(this, formLayout);
+
+        final Activity current = this;
 
         List<FormObject> formObjects = new ArrayList<>();
 
@@ -174,14 +199,19 @@ public class UniformActivity extends AbstractFormActivity {
                                     new Callback<Boolean, Exception>() {
                                         @Override
                                         public void onSuccess(Boolean response) {
-                                            Intent intent = new Intent(current, HomeActivity.class);
-                                            intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-                                            Notification.setNotificationInIntent(
-                                                    intent,
-                                                    R.string.uniform_submit_success,
-                                                    Notification.SUCCESS_BG_COLOR,
-                                                    Notification.SUCCESS_TXT_COLOR);
-                                            current.startActivity(intent);
+                                            current.runOnUiThread(new Runnable() {
+                                                @Override
+                                                public void run() {
+                                                    Intent intent = new Intent(current, HomeActivity.class);
+                                                    intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                                                    Notification.setNotificationInIntent(
+                                                            intent,
+                                                            R.string.uniform_submit_success,
+                                                            Notification.SUCCESS_BG_COLOR,
+                                                            Notification.SUCCESS_TXT_COLOR);
+                                                    current.startActivity(intent);
+                                                }
+                                            });
                                         }
 
                                         @Override

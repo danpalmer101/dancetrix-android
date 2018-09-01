@@ -58,10 +58,15 @@ public class HomeActivity extends BaseActivity {
 
         ServiceLocator.CLASS_SERVICE.getClassMenu(this, new Callback<ClassMenu, Exception>() {
             @Override
-            public void onSuccess(ClassMenu response) {
-                Intent intent = new Intent(current, ClassMenuActivity.class);
-                intent.putExtra(ClassMenuActivity.INTENT_KEY_CLASS_MENU, response);
-                current.startActivity(intent);
+            public void onSuccess(final ClassMenu response) {
+                current.runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        Intent intent = new Intent(current, ClassMenuActivity.class);
+                        intent.putExtra(ClassMenuActivity.INTENT_KEY_CLASS_MENU, response);
+                        current.startActivity(intent);
+                    }
+                });
             }
 
             @Override

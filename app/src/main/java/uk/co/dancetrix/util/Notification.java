@@ -22,18 +22,27 @@ public class Notification {
     public static final int ERROR_BG_COLOR = Color.parseColor("#FF2D55");
     public static final int ERROR_TXT_COLOR = Color.WHITE;
 
-    public static void showNotification(Activity activity, int viewId, int textId, int bgColor, int txtColor) {
+    public static void showNotification(final Activity activity,
+                                        final int viewId,
+                                        final int textId,
+                                        final int bgColor,
+                                        final int txtColor) {
         if (textId > Integer.MIN_VALUE) {
-            Snackbar snackbar = Snackbar.make(activity.findViewById(viewId), textId, Snackbar.LENGTH_LONG);
+            activity.runOnUiThread(new Runnable() {
+                @Override
+                public void run() {
+                    Snackbar snackbar = Snackbar.make(activity.findViewById(viewId), textId, Snackbar.LENGTH_LONG);
 
-            View snackbarView = snackbar.getView();
-            snackbarView.setBackgroundColor(bgColor);
+                    View snackbarView = snackbar.getView();
+                    snackbarView.setBackgroundColor(bgColor);
 
-            int snackbarTextViewId = android.support.design.R.id.snackbar_text;
-            TextView textView = snackbarView.findViewById(snackbarTextViewId);
-            textView.setTextColor(txtColor);
+                    int snackbarTextViewId = android.support.design.R.id.snackbar_text;
+                    TextView textView = snackbarView.findViewById(snackbarTextViewId);
+                    textView.setTextColor(txtColor);
 
-            snackbar.show();
+                    snackbar.show();
+                }
+            });
         }
     }
 

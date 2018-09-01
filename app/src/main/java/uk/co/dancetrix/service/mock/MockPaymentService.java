@@ -1,5 +1,7 @@
 package uk.co.dancetrix.service.mock;
 
+import android.os.AsyncTask;
+
 import java.util.Date;
 
 import uk.co.dancetrix.service.Callback;
@@ -16,9 +18,13 @@ public class MockPaymentService implements PaymentService {
                        String method,
                        String reason,
                        String additionalInfo,
-                       Callback<Boolean, Exception> callback) {
-        // TODO : Delay
-        callback.onSuccess(true);
+                       final Callback<Boolean, Exception> callback) {
+        AsyncTask.execute(new Runnable() {
+            @Override
+            public void run() {
+                callback.onSuccess(true);
+            }
+        });
     }
 
 }
