@@ -11,13 +11,13 @@ public class ClassMenuParserTest {
 
     private static final String CSV =
             "Format,Name,Menu Structure,Dates File,Description File,Individual Date Booking\n" +
-            "V1,Class 1, Category A|Type 1,a1.csv,b1.txt,true\n" +
-            "V1,Class 2, Category A|Type 2,a2.csv,b2.txt,false\n" +
-            "V1,Class 3, Category B|Type 1,a3.csv,b3.txt,true\n" +
-            "V1,Class 4, Category B|Type 2,a4.csv,b4.txt,false\n";
+            "V1,Class 1, Category A|Type 1|Class 1,a1.csv,b1.txt,true\n" +
+            "V1,Class 2, Category A|Type 2|Class 2,a2.csv,b2.txt,false\n" +
+            "V1,Class 3, Category B|Type 1|Class 3,a3.csv,b3.txt,true\n" +
+            "V1,Class 4, Category B|Type 2|Class 4,a4.csv,b4.txt,false\n";
 
     @Test
-    public void testParse() throws Exception {
+    public void testParse() {
         ClassMenu menu = ClassMenuParser.parse(CSV);
 
         assertEquals("Classes", menu.getName());

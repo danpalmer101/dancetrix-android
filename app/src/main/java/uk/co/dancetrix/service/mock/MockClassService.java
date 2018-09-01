@@ -36,7 +36,7 @@ public class MockClassService implements ClassService {
                               ClassDetails classDetails,
                               Callback<List<DateInterval>, Exception> callback) {
         int rawId = ctx.getResources().getIdentifier(
-                classDetails.getDatesLocation(),
+                FileReader.stripExtension(classDetails.getDatesLocation()),
                 "raw",
                 ctx.getPackageName());
 
@@ -56,7 +56,7 @@ public class MockClassService implements ClassService {
                                     ClassDetails classDetails,
                                     Callback<String, Exception> callback) {
         int rawId = ctx.getResources().getIdentifier(
-                classDetails.getDescriptionLocation(),
+                FileReader.stripExtension(classDetails.getDescriptionLocation()),
                 "raw",
                 ctx.getPackageName());
 

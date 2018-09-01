@@ -33,8 +33,9 @@ public class HomeActivity extends BaseActivity {
 
         Fabric.with(this, new Crashlytics());
 
-        //removeView(R.id.bookClassButton, !Configuration.bookClassEnabled());
-        removeView(R.id.calendarButton, !Configuration.calendarEnabled());
+        removeView(R.id.bookClassButton, !Configuration.bookClassEnabled());
+        //removeView(R.id.calendarButton, !Configuration.calendarEnabled());
+        removeView(R.id.calendarButton, true);
         removeView(R.id.makePaymentButton, !Configuration.paymentEnabled());
         removeView(R.id.orderUniformButton, !Configuration.uniformEnabled());
         removeView(R.id.aboutUsButton, !Configuration.aboutEnabled());
