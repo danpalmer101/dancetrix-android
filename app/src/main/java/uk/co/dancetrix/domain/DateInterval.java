@@ -1,10 +1,11 @@
 package uk.co.dancetrix.domain;
 
+import java.io.Serializable;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Locale;
 
-public class DateInterval {
+public class DateInterval implements Serializable {
 
     private static final SimpleDateFormat DATE_FORMAT =
             new SimpleDateFormat("EEEE, MMM d, yyyy", Locale.getDefault());

@@ -1,6 +1,7 @@
 package uk.co.dancetrix.activity;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.text.method.ScrollingMovementMethod;
 import android.util.SparseBooleanArray;
@@ -9,6 +10,7 @@ import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -122,7 +124,12 @@ public class ClassDetailsActivity extends BaseActivity {
             }
         }
 
-        // TODO
+        if (selectedDates.size() > 0) {
+            Intent intent = new Intent(this, ClassBookingActivity.class);
+            intent.putExtra(ClassBookingActivity.INTENT_KEY_CLASS_DETAILS, this.classDetails);
+            intent.putExtra(ClassBookingActivity.INTENT_KEY_CLASS_DATES, (Serializable) selectedDates);
+            this.startActivity(intent);
+        }
     }
 
 }
