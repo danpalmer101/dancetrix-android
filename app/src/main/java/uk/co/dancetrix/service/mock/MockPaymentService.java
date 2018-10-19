@@ -19,12 +19,7 @@ public class MockPaymentService implements PaymentService {
                        String reason,
                        String additionalInfo,
                        final Callback<Boolean, Exception> callback) {
-        AsyncTask.execute(new Runnable() {
-            @Override
-            public void run() {
-                callback.onSuccess(true);
-            }
-        });
+        AsyncTask.execute(() -> callback.onSuccess(true));
     }
 
 }

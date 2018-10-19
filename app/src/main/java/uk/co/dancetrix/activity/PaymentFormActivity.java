@@ -130,56 +130,50 @@ public class PaymentFormActivity extends AbstractFormActivity {
                 .setTitle(getString(R.string.payment_submit))
                 .setBackgroundColor(ContextCompat.getColor(this, R.color.colorAccent))
                 .setTextColor(Color.WHITE)
-                .setRunnable(new Runnable() {
-                    @Override
-                    public void run() {
-                        clearAllErrors();
+                .setRunnable(() -> {
+                    clearAllErrors();
 
-                        boolean isValid = formBuilder.validate();
+                    boolean isValid = formBuilder.validate();
 
-                        if (isValid) {
-                            try {
-                                ServiceLocator.PAYMENT_SERVICE.notify(
-                                        DATE_FORMAT.parse(formBuilder.formMap.get("date").getValue()),
-                                        Double.parseDouble(formBuilder.formMap.get("amount").getValue()),
-                                        formBuilder.formMap.get("name").getValue(),
-                                        formBuilder.formMap.get("student_name").getValue(),
-                                        formBuilder.formMap.get("email").getValue(),
-                                        formBuilder.formMap.get("method").getValue(),
-                                        formBuilder.formMap.get("reason").getValue(),
-                                        formBuilder.formMap.get("additional").getValue(),
-                                        new Callback<Boolean, Exception>() {
-                                            @Override
-                                            public void onSuccess(Boolean response) {
-                                                current.runOnUiThread(new Runnable() {
-                                                    @Override
-                                                    public void run() {
-                                                        Intent intent = new Intent(current, HomeActivity.class);
-                                                        intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-                                                        Notification.setNotificationInIntent(
-                                                                intent,
-                                                                R.string.payment_submit_success,
-                                                                Notification.SUCCESS_BG_COLOR,
-                                                                Notification.SUCCESS_TXT_COLOR);
-                                                        current.startActivity(intent);
-                                                    }
-                                                });
-                                            }
+                    if (isValid) {
+                        try {
+                            ServiceLocator.PAYMENT_SERVICE.notify(
+                                    DATE_FORMAT.parse(formBuilder.formMap.get("date").getValue()),
+                                    Double.parseDouble(formBuilder.formMap.get("amount").getValue()),
+                                    formBuilder.formMap.get("name").getValue(),
+                                    formBuilder.formMap.get("student_name").getValue(),
+                                    formBuilder.formMap.get("email").getValue(),
+                                    formBuilder.formMap.get("method").getValue(),
+                                    formBuilder.formMap.get("reason").getValue(),
+                                    formBuilder.formMap.get("additional").getValue(),
+                                    new Callback<Boolean, Exception>() {
+                                        @Override
+                                        public void onSuccess(Boolean response) {
+                                            current.runOnUiThread(() -> {
+                                                Intent intent = new Intent(current, HomeActivity.class);
+                                                intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                                                Notification.setNotificationInIntent(
+                                                        intent,
+                                                        R.string.payment_submit_success,
+                                                        Notification.SUCCESS_BG_COLOR,
+                                                        Notification.SUCCESS_TXT_COLOR);
+                                                current.startActivity(intent);
+                                            });
+                                        }
 
-                                            @Override
-                                            public void onError(Exception exception) {
-                                                Log.w("Payment", "Error submitting the payment details", exception);
+                                        @Override
+                                        public void onError(Exception exception) {
+                                            Log.w("Payment", "Error submitting the payment details", exception);
 
-                                                Notification.showNotification(current,
-                                                        R.id.activity_payment_form,
-                                                        R.string.payment_submit_error,
-                                                        Notification.ERROR_BG_COLOR,
-                                                        Notification.ERROR_TXT_COLOR);
-                                            }
-                                        });
-                            } catch (ParseException e) {
-                                // TODO display error
-                            }
+                                            Notification.showNotification(current,
+                                                    R.id.activity_payment_form,
+                                                    R.string.payment_submit_error,
+                                                    Notification.ERROR_BG_COLOR,
+                                                    Notification.ERROR_TXT_COLOR);
+                                        }
+                                    });
+                        } catch (ParseException e) {
+                            // TODO display error
                         }
                     }
                 })

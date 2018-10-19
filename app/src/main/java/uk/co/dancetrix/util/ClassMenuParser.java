@@ -6,7 +6,6 @@ import android.util.Log;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
-import java.util.Comparator;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
@@ -32,6 +31,7 @@ public class ClassMenuParser extends CsvParser {
                     if (classMenu != null) {
                         classMenus.add(classMenu);
                     }
+                    break;
                 default:
                     Log.w("CSV", "Unrecognised ClassMenu CSV format: " + format);
             }
@@ -68,12 +68,7 @@ public class ClassMenuParser extends CsvParser {
 
         List<ClassMenu> menus = new ArrayList<>(mergedClassMenus.values());
 
-        Collections.sort(menus, new Comparator<ClassMenu>() {
-            @Override
-            public int compare(ClassMenu a, ClassMenu b) {
-                return a.getName().compareTo(b.getName());
-            }
-        });
+        Collections.sort(menus, (a, b) -> a.getName().compareTo(b.getName()));
 
         return menus;
     }

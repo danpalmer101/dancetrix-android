@@ -17,12 +17,7 @@ public class MockEmailService implements EmailService {
                           String to,
                           Map<String, Object> templateParameters,
                           final Callback<Boolean, Exception> callback) {
-        AsyncTask.execute(new Runnable() {
-            @Override
-            public void run() {
-                callback.onSuccess(true);
-            }
-        });
+        AsyncTask.execute(() -> callback.onSuccess(true));
     }
 
 }

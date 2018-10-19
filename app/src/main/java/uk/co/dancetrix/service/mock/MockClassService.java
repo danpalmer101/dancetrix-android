@@ -21,18 +21,15 @@ public class MockClassService implements ClassService {
     @Override
     public void getClassMenu(final Context ctx,
                              final Callback<ClassMenu, Exception> callback) {
-        AsyncTask.execute(new Runnable() {
-            @Override
-            public void run() {
-                try {
-                    String csv = FileReader.readFile(ctx, R.raw.classes);
+        AsyncTask.execute(() -> {
+            try {
+                String csv = FileReader.readFile(ctx, R.raw.classes);
 
-                    callback.onSuccess(ClassMenuParser.parse(csv));
-                } catch (Exception e) {
-                    Log.e("Classes", "Error reading class menu", e);
+                callback.onSuccess(ClassMenuParser.parse(csv));
+            } catch (Exception e) {
+                Log.e("Classes", "Error reading class menu", e);
 
-                    callback.onError(e);
-                }
+                callback.onError(e);
             }
         });
     }
@@ -41,23 +38,20 @@ public class MockClassService implements ClassService {
     public void getClassDates(final Context ctx,
                               final ClassDetails classDetails,
                               final Callback<List<DateInterval>, Exception> callback) {
-        AsyncTask.execute(new Runnable() {
-            @Override
-            public void run() {
-                int rawId = ctx.getResources().getIdentifier(
-                        FileReader.stripExtension(classDetails.getDatesLocation()),
-                        "raw",
-                        ctx.getPackageName());
+        AsyncTask.execute(() -> {
+            int rawId = ctx.getResources().getIdentifier(
+                    FileReader.stripExtension(classDetails.getDatesLocation()),
+                    "raw",
+                    ctx.getPackageName());
 
-                try {
-                    String csv = FileReader.readFile(ctx, rawId);
+            try {
+                String csv = FileReader.readFile(ctx, rawId);
 
-                    callback.onSuccess(ClassDatesParser.parse(csv));
-                } catch (Exception e) {
-                    Log.e("Classes", "Error reading class dates", e);
+                callback.onSuccess(ClassDatesParser.parse(csv));
+            } catch (Exception e) {
+                Log.e("Classes", "Error reading class dates", e);
 
-                    callback.onError(e);
-                }
+                callback.onError(e);
             }
         });
     }
@@ -66,26 +60,23 @@ public class MockClassService implements ClassService {
     public void getClassDescription(final Context ctx,
                                     final ClassDetails classDetails,
                                     final Callback<String, Exception> callback) {
-            AsyncTask.execute(new Runnable() {
-                @Override
-                public void run() {
-                    int rawId = ctx.getResources().getIdentifier(
-                            FileReader.stripExtension(classDetails.getDescriptionLocation()),
-                            "raw",
-                            ctx.getPackageName());
+            AsyncTask.execute(() -> {
+                int rawId = ctx.getResources().getIdentifier(
+                        FileReader.stripExtension(classDetails.getDescriptionLocation()),
+                        "raw",
+                        ctx.getPackageName());
 
-                    try {
-                        String text = FileReader.readFile(ctx, rawId);
+                try {
+                    String text = FileReader.readFile(ctx, rawId);
 
-                        callback.onSuccess(text);
-                    } catch (
-                            Exception e)
+                    callback.onSuccess(text);
+                } catch (
+                        Exception e)
 
-                    {
-                        Log.e("Classes", "Error reading class description", e);
+                {
+                    Log.e("Classes", "Error reading class description", e);
 
-                        callback.onError(e);
-                    }
+                    callback.onError(e);
                 }
             });
     }

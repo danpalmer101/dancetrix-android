@@ -28,20 +28,17 @@ public class Notification {
                                         final int bgColor,
                                         final int txtColor) {
         if (textId > Integer.MIN_VALUE) {
-            activity.runOnUiThread(new Runnable() {
-                @Override
-                public void run() {
-                    Snackbar snackbar = Snackbar.make(activity.findViewById(viewId), textId, Snackbar.LENGTH_LONG);
+            activity.runOnUiThread(() -> {
+                Snackbar snackbar = Snackbar.make(activity.findViewById(viewId), textId, Snackbar.LENGTH_LONG);
 
-                    View snackbarView = snackbar.getView();
-                    snackbarView.setBackgroundColor(bgColor);
+                View snackbarView = snackbar.getView();
+                snackbarView.setBackgroundColor(bgColor);
 
-                    int snackbarTextViewId = android.support.design.R.id.snackbar_text;
-                    TextView textView = snackbarView.findViewById(snackbarTextViewId);
-                    textView.setTextColor(txtColor);
+                int snackbarTextViewId = android.support.design.R.id.snackbar_text;
+                TextView textView = snackbarView.findViewById(snackbarTextViewId);
+                textView.setTextColor(txtColor);
 
-                    snackbar.show();
-                }
+                snackbar.show();
             });
         }
     }

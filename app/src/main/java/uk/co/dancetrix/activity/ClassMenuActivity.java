@@ -11,7 +11,6 @@ import android.widget.Button;
 import android.widget.LinearLayout;
 
 import uk.co.dancetrix.R;
-import uk.co.dancetrix.domain.ClassDetails;
 import uk.co.dancetrix.domain.ClassMenu;
 import uk.co.dancetrix.util.Display;
 import uk.co.dancetrix.util.Notification;
@@ -59,13 +58,10 @@ public class ClassMenuActivity extends BaseActivity {
 
         Button button = createDefaultButton();
         button.setText(subMenu.getName());
-        button.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(current, ClassMenuActivity.class);
-                intent.putExtra(INTENT_KEY_CLASS_MENU, subMenu);
-                current.startActivity(intent);
-            }
+        button.setOnClickListener(view -> {
+            Intent intent = new Intent(current, ClassMenuActivity.class);
+            intent.putExtra(INTENT_KEY_CLASS_MENU, subMenu);
+            current.startActivity(intent);
         });
 
         return button;
@@ -76,13 +72,10 @@ public class ClassMenuActivity extends BaseActivity {
 
         Button button = createDefaultButton();
         button.setText(classMenu.getName());
-        button.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(current, ClassDetailsActivity.class);
-                intent.putExtra(ClassDetailsActivity.INTENT_KEY_CLASS_DETAILS, classMenu.getClassDetails());
-                current.startActivity(intent);
-            }
+        button.setOnClickListener(view -> {
+            Intent intent = new Intent(current, ClassDetailsActivity.class);
+            intent.putExtra(ClassDetailsActivity.INTENT_KEY_CLASS_DETAILS, classMenu.getClassDetails());
+            current.startActivity(intent);
         });
 
         return button;

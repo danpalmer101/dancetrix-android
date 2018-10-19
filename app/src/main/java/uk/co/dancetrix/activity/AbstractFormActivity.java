@@ -1,7 +1,6 @@
 package uk.co.dancetrix.activity;
 
 import android.support.design.widget.TextInputLayout;
-import android.support.v7.app.AppCompatActivity;
 import android.text.TextUtils;
 import android.view.View;
 import android.widget.EditText;
@@ -31,7 +30,7 @@ abstract class AbstractFormActivity extends BaseActivity {
                 for (FormElement e : this.formBuilder.formMap.values()) {
                     if (e.getHint() != null
                             && inputLayout.getHint() != null
-                            && e.getHint().equals(inputLayout.getHint())) {
+                            && e.getHint().contentEquals(inputLayout.getHint())) {
                         this.formBuilder.viewMap.put(e.getTagOrToString(), inputLayout.getEditText());
                         break;
                     }
@@ -58,7 +57,7 @@ abstract class AbstractFormActivity extends BaseActivity {
     class SingleSelectFormElement extends FormElement {
         @Override
         public FormElement setOptions(List<String> options) {
-            super.setOptions(new ArrayList<String>());
+            super.setOptions(new ArrayList<>());
             super.getOptions().addAll(options);
             return this;
         }

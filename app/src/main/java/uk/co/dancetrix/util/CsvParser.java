@@ -2,9 +2,9 @@ package uk.co.dancetrix.util;
 
 import java.util.ArrayList;
 
-public class CsvParser {
+class CsvParser {
 
-    protected static String[] getRows(String csv) {
+    static String[] getRows(String csv) {
         String cleanCsv = cleanCsv(csv);
 
         String[] rawRows = cleanCsv.split("\n");
@@ -21,11 +21,11 @@ public class CsvParser {
         return rows.toArray(new String[rows.size()]);
     }
 
-    protected static String[] getColumns(String csvRow) {
+    static String[] getColumns(String csvRow) {
         return csvRow.split(",");
     }
 
-    protected static String cleanCsv(String csv) {
+    private static String cleanCsv(String csv) {
         return csv.replace("\r\n", "\n") // CR+LF -> LF
                   .replace("\n\r", "\n") // LF+CR -> LF
                   .replace("\r", "\n");  // CR    -> LF

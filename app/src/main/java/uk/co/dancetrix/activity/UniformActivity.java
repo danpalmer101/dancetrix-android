@@ -51,12 +51,7 @@ public class UniformActivity extends AbstractFormActivity {
             public void onSuccess(List<UniformGroup> response) {
                 groups = response;
 
-                current.runOnUiThread(new Runnable() {
-                    @Override
-                    public void run() {
-                        buildForm();
-                    }
-                });
+                current.runOnUiThread(() -> buildForm());
             }
 
             @Override
@@ -166,66 +161,60 @@ public class UniformActivity extends AbstractFormActivity {
                 .setTitle(getString(R.string.uniform_submit))
                 .setBackgroundColor(ContextCompat.getColor(this, R.color.colorAccent))
                 .setTextColor(Color.WHITE)
-                .setRunnable(new Runnable() {
-                    @Override
-                    public void run() {
-                        clearAllErrors();
+                .setRunnable(() -> {
+                    clearAllErrors();
 
-                        boolean isValid = formBuilder.validate();
+                    boolean isValid = formBuilder.validate();
 
-                        if (isValid) {
-                            Map<UniformItem, String> orderItems = new LinkedHashMap<>();
+                    if (isValid) {
+                        Map<UniformItem, String> orderItems = new LinkedHashMap<>();
 
-                            for (UniformGroup group : groups) {
-                                for (UniformItem item : group.getItems()) {
-                                    if (formBuilder.formMap.containsKey(item.getKey())) {
-                                        String value = formBuilder.formMap.get(item.getKey()).getValue();
-                                        if (value != null && !value.equals(NO)) {
-                                            orderItems.put(item, value);
-                                        }
+                        for (UniformGroup group : groups) {
+                            for (UniformItem item : group.getItems()) {
+                                if (formBuilder.formMap.containsKey(item.getKey())) {
+                                    String value = formBuilder.formMap.get(item.getKey()).getValue();
+                                    if (value != null && !value.equals(NO)) {
+                                        orderItems.put(item, value);
                                     }
                                 }
                             }
-
-                            ServiceLocator.UNIFORM_SERVICE.orderUniform(
-                                    formBuilder.formMap.get("name").getValue(),
-                                    formBuilder.formMap.get("student_name").getValue(),
-                                    formBuilder.formMap.get("email").getValue(),
-                                    null,
-                                    YES.equals(formBuilder.formMap.get("payment_made").getValue()),
-                                    formBuilder.formMap.get("method").getValue(),
-                                    formBuilder.formMap.get("additional").getValue(),
-                                    orderItems,
-                                    new Callback<Boolean, Exception>() {
-                                        @Override
-                                        public void onSuccess(Boolean response) {
-                                            current.runOnUiThread(new Runnable() {
-                                                @Override
-                                                public void run() {
-                                                    Intent intent = new Intent(current, HomeActivity.class);
-                                                    intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-                                                    Notification.setNotificationInIntent(
-                                                            intent,
-                                                            R.string.uniform_submit_success,
-                                                            Notification.SUCCESS_BG_COLOR,
-                                                            Notification.SUCCESS_TXT_COLOR);
-                                                    current.startActivity(intent);
-                                                }
-                                            });
-                                        }
-
-                                        @Override
-                                        public void onError(Exception exception) {
-                                            Log.w("Uniform", "Error submitting the uniform order", exception);
-
-                                            Notification.showNotification(current,
-                                                    R.id.activity_uniform,
-                                                    R.string.uniform_submit_error,
-                                                    Notification.ERROR_BG_COLOR,
-                                                    Notification.ERROR_TXT_COLOR);
-                                        }
-                                    });
                         }
+
+                        ServiceLocator.UNIFORM_SERVICE.orderUniform(
+                                formBuilder.formMap.get("name").getValue(),
+                                formBuilder.formMap.get("student_name").getValue(),
+                                formBuilder.formMap.get("email").getValue(),
+                                null,
+                                YES.equals(formBuilder.formMap.get("payment_made").getValue()),
+                                formBuilder.formMap.get("method").getValue(),
+                                formBuilder.formMap.get("additional").getValue(),
+                                orderItems,
+                                new Callback<Boolean, Exception>() {
+                                    @Override
+                                    public void onSuccess(Boolean response) {
+                                        current.runOnUiThread(() -> {
+                                            Intent intent = new Intent(current, HomeActivity.class);
+                                            intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                                            Notification.setNotificationInIntent(
+                                                    intent,
+                                                    R.string.uniform_submit_success,
+                                                    Notification.SUCCESS_BG_COLOR,
+                                                    Notification.SUCCESS_TXT_COLOR);
+                                            current.startActivity(intent);
+                                        });
+                                    }
+
+                                    @Override
+                                    public void onError(Exception exception) {
+                                        Log.w("Uniform", "Error submitting the uniform order", exception);
+
+                                        Notification.showNotification(current,
+                                                R.id.activity_uniform,
+                                                R.string.uniform_submit_error,
+                                                Notification.ERROR_BG_COLOR,
+                                                Notification.ERROR_TXT_COLOR);
+                                    }
+                                });
                     }
                 })
         );

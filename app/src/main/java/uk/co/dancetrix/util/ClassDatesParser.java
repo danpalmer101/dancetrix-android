@@ -31,6 +31,7 @@ public class ClassDatesParser extends CsvParser {
                     if (dateInterval != null) {
                         dateIntervals.add(dateInterval);
                     }
+                    break;
                 default:
                     Log.w("CSV", "Unrecognised Class Date CSV format: " + format);
             }

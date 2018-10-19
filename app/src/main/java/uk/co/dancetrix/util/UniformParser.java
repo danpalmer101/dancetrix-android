@@ -28,6 +28,7 @@ public class UniformParser extends CsvParser {
                 case "V1":
                     Pair<String, UniformItem> uniformItem = parseFormat1(csvColumns);
                     uniformItems.add(uniformItem);
+                    break;
                 default:
                     Log.w("CSV", "Unrecognised uniform CSV format: " + format);
             }

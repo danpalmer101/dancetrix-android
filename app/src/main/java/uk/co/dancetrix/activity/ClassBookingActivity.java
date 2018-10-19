@@ -91,29 +91,23 @@ public class ClassBookingActivity extends AbstractFormActivity {
                 .setTitle(getString(R.string.booking_class_submit))
                 .setBackgroundColor(ContextCompat.getColor(this, R.color.colorAccent))
                 .setTextColor(Color.WHITE)
-                .setRunnable(new Runnable() {
-                    @Override
-                    public void run() {
-                        clearAllErrors();
+                .setRunnable(() -> {
+                    clearAllErrors();
 
-                        boolean isValid = formBuilder.validate();
+                    boolean isValid = formBuilder.validate();
 
-                        if (isValid) {
-                            // TODO - call service
-                            current.runOnUiThread(new Runnable() {
-                                @Override
-                                public void run() {
-                                    Intent intent = new Intent(current, HomeActivity.class);
-                                    intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-                                    Notification.setNotificationInIntent(
-                                            intent,
-                                            R.string.booking_class_success,
-                                            Notification.SUCCESS_BG_COLOR,
-                                            Notification.SUCCESS_TXT_COLOR);
-                                    current.startActivity(intent);
-                                }
-                            });
-                        }
+                    if (isValid) {
+                        // TODO - call service
+                        current.runOnUiThread(() -> {
+                            Intent intent = new Intent(current, HomeActivity.class);
+                            intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                            Notification.setNotificationInIntent(
+                                    intent,
+                                    R.string.booking_class_success,
+                                    Notification.SUCCESS_BG_COLOR,
+                                    Notification.SUCCESS_TXT_COLOR);
+                            current.startActivity(intent);
+                        });
                     }
                 })
         );
