@@ -14,6 +14,7 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
+import ru.noties.markwon.Markwon;
 import uk.co.dancetrix.R;
 import uk.co.dancetrix.domain.ClassDetails;
 import uk.co.dancetrix.domain.DateInterval;
@@ -89,7 +90,7 @@ public class ClassDetailsActivity extends BaseActivity {
                 public void onSuccess(final String response) {
                     current.runOnUiThread(() -> {
                         TextView textView = findViewById(R.id.classInfoView);
-                        textView.setText(response);
+                        Markwon.setMarkdown(textView, response);
                         textView.setMovementMethod(new ScrollingMovementMethod());
                     });
                 }

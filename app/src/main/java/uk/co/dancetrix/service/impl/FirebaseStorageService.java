@@ -14,7 +14,7 @@ public abstract class FirebaseStorageService {
 
     protected abstract String getTag();
 
-    protected void loadFile(final String fileName,
+    public void loadFile(final String fileName,
                             final OnSuccessListener<String> successListener,
                             final OnFailureListener failureListener) {
         if (FirebaseAuth.getInstance().getCurrentUser() != null) {

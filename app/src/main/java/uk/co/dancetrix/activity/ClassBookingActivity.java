@@ -6,6 +6,7 @@ import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v4.content.ContextCompat;
 import android.text.TextUtils;
+import android.util.Log;
 import android.widget.LinearLayout;
 
 import com.dariopellegrini.formbuilder.FormBuilder;
@@ -20,6 +21,8 @@ import java.util.List;
 import uk.co.dancetrix.R;
 import uk.co.dancetrix.domain.ClassDetails;
 import uk.co.dancetrix.domain.DateInterval;
+import uk.co.dancetrix.service.Callback;
+import uk.co.dancetrix.service.ServiceLocator;
 import uk.co.dancetrix.util.Notification;
 
 public class ClassBookingActivity extends AbstractFormActivity {
@@ -97,17 +100,35 @@ public class ClassBookingActivity extends AbstractFormActivity {
                     boolean isValid = formBuilder.validate();
 
                     if (isValid) {
-                        // TODO - call service
-                        current.runOnUiThread(() -> {
-                            Intent intent = new Intent(current, HomeActivity.class);
-                            intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-                            Notification.setNotificationInIntent(
-                                    intent,
-                                    R.string.booking_class_success,
-                                    Notification.SUCCESS_BG_COLOR,
-                                    Notification.SUCCESS_TXT_COLOR);
-                            current.startActivity(intent);
-                        });
+                        ServiceLocator.BOOKING_SERVICE.bookClass(
+                                classDetails,
+                                selectedDates,
+                                formBuilder.formMap.get("student_name").getValue(),
+                                formBuilder.formMap.get("email").getValue(),
+                                new Callback<Boolean, Exception>() {
+                                    @Override
+                                    public void onSuccess(Boolean response) {
+                                        Intent intent = new Intent(current, HomeActivity.class);
+                                        intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                                        Notification.setNotificationInIntent(
+                                                intent,
+                                                R.string.booking_class_success,
+                                                Notification.SUCCESS_BG_COLOR,
+                                                Notification.SUCCESS_TXT_COLOR);
+                                        current.startActivity(intent);
+                                    }
+
+                                    @Override
+                                    public void onError(Exception exception) {
+                                        Log.w("Booking", "Error submitting the booking", exception);
+
+                                        Notification.showNotification(current,
+                                                R.id.activity_class_booking,
+                                                R.string.booking_class_error,
+                                                Notification.ERROR_BG_COLOR,
+                                                Notification.ERROR_TXT_COLOR);
+                                    }
+                                });
                     }
                 })
         );

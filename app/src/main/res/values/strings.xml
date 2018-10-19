@@ -1,38 +1,34 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">Dance Trix</string>
+
     <string name="network_not_connected">No internet connection, some features may not be available</string>
     <string name="network_wifi">Connected to a Wi-Fi network</string>
     <string name="network_mobile">Connected to a mobile data network</string>
+
     <string name="book_class">Book a class</string>
     <string name="view_calendar">View our calendar</string>
     <string name="order_uniforms">Order uniforms</string>
     <string name="make_payment">Make a payment</string>
     <string name="about_us">About us</string>
     <string name="visit_website">visit dancetrix.co.uk</string>
-    <string name="payment_info_html">
-  <![CDATA[
-    <p>We accept payment via a number of methods:</p>
-    <p>1. Our preferred method of payment is <b>bank transfer</b> into our account:<br/>
-	<p>Sort code: 09-01-28<br/>
-	Account number: 89761875</p>
-    <p>2. You can pay via <b>PayPal</b> using our email address (dancetrix@yahoo.co.uk) as the payee.</p>
-    <p>3. You can pay via <b>credit/debit card</b> by calling either one of us on the numbers on the contact page (please note that there is a 3% transaction fee for this).</p>
-    <p>4. You can pay before the class is attended or goods are received in <b>cash</b>.</p>
-    <p>Once you have completed the transaction, please let us know with the button below.</p>
-  ]]>
-    </string>
+
     <string name="payment_let_us_know">Let us know about a payment</string>
     <string name="payment_submit">Submit payment details</string>
     <string name="payment_submit_success">Success! Thanks for letting us know</string>
     <string name="payment_submit_error">Sorry, something has gone wrong submitting your payment details</string>
+
     <string name="uniform_load_error">Sorry, something has gone wrong loading our uniforms</string>
     <string name="uniform_submit">Submit order</string>
     <string name="uniform_submit_success">Success! Your uniform order has been sent</string>
     <string name="uniform_submit_error">Sorry, something has gone wrong submitting your uniform order</string>
+
     <string name="booking_class_dates">Book dates</string>
     <string name="booking_class_dates_error">Sorry, something has gone wrong loading dates for this class</string>
     <string name="booking_class_menu_error">Sorry, something has gone wrong loading classes</string>
     <string name="booking_class_submit">Submit booking</string>
     <string name="booking_class_success">Success! Your booking has been submitted</string>
+    <string name="booking_class_error">Sorry, something has gone wrong submitting your booking</string>
+
+    <string name="unexpected_error">Sorry, an unexpected error has occurred</string>
 </resources>
