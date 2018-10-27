@@ -127,6 +127,20 @@ public class UniformActivity extends AbstractFormActivity {
 
         formObjects.add(new FormHeader().setTitle("Payment"));
 
+        FormElement packageName = new SingleSelectFormElement();
+        formObjects.add(packageName
+                .setTag("package")
+                .setHint("Package")
+                .setType(FormElement.Type.SELECTION)
+                .setOptions(Arrays.asList(
+                        "Bronze",
+                        "Bronze Plus",
+                        "Silver",
+                        "Silver Plus",
+                        "Gold",
+                        "Gold Plus"))
+        );
+
         FormElement paymentMade = new SingleSelectFormElement();
         formObjects.add(paymentMade
                 .setTag("payment_made")
@@ -143,6 +157,7 @@ public class UniformActivity extends AbstractFormActivity {
                 .setHint("Method")
                 .setType(FormElement.Type.SELECTION)
                 .setOptions(Arrays.asList(
+                        "Payment not made",
                         "Bank transfer",
                         "PayPal",
                         "Credit/Debit card",
@@ -185,7 +200,7 @@ public class UniformActivity extends AbstractFormActivity {
                                 formBuilder.formMap.get("name").getValue(),
                                 formBuilder.formMap.get("student_name").getValue(),
                                 formBuilder.formMap.get("email").getValue(),
-                                null,
+                                formBuilder.formMap.get("package").getValue(),
                                 YES.equals(formBuilder.formMap.get("payment_made").getValue()),
                                 formBuilder.formMap.get("method").getValue(),
                                 formBuilder.formMap.get("additional").getValue(),

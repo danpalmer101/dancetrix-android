@@ -20,14 +20,14 @@
             <b>Size</b>
         </th>
     </tr>
-    {{# each(orderItems) }}
+    {{#orderItems.entrySet}}
     <tr>
         <td style="border-width:1px;border-style:solid;border-color:#ddd;border-collapse:collapse;padding-top:4px;padding-bottom:4px;padding-right:4px;padding-left:4px;" >
-            {{ @key }}
+            {{key.name}}
         </td>
         <td style="border-width:1px;border-style:solid;border-color:#ddd;border-collapse:collapse;padding-top:4px;padding-bottom:4px;padding-right:4px;padding-left:4px;" >
-            {{#.}}{{.}}{{/.}}
+            {{#value}}{{value}}{{/value}}
         </td>
     </tr>
-    {{/}}
+    {{/orderItems.entrySet}}
 </table>

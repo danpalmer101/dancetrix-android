@@ -8,6 +8,6 @@ Payment method: {{paymentMethod}}
 Additional information: {{additionalInfo}}
 
 Order:
-{{# each(orderItems) }}
- * item: {{ @key }}{{#.}}, size: {{.}}{{/.}}
-{{/}}
+{{#orderItems.entrySet }}
+ * item: {{key.name}}{{#value}}, size: {{value}}{{/value}}
+{{/orderItems.entrySet}}
