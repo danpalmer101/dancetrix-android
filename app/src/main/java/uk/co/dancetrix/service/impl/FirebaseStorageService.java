@@ -15,8 +15,8 @@ public abstract class FirebaseStorageService {
     protected abstract String getTag();
 
     public void loadFile(final String fileName,
-                            final OnSuccessListener<String> successListener,
-                            final OnFailureListener failureListener) {
+                         final OnSuccessListener<String> successListener,
+                         final OnFailureListener failureListener) {
         if (FirebaseAuth.getInstance().getCurrentUser() != null) {
             loadFileAuthenticated(fileName, successListener, failureListener);
         } else {
@@ -28,8 +28,8 @@ public abstract class FirebaseStorageService {
     }
 
     private void loadFileAuthenticated(final String fileName,
-                                         final OnSuccessListener<String> successListener,
-                                         final OnFailureListener failureListener) {
+                                       final OnSuccessListener<String> successListener,
+                                       final OnFailureListener failureListener) {
         final StorageReference classesReference = FirebaseStorage.getInstance().getReference().child(fileName);
 
         Log.d(getTag(), "    Downloading file from Firebase storage: " + fileName);

@@ -62,7 +62,30 @@ public class Configuration {
         return isTrue(getRemoteConfig("feature_about"));
     }
 
-    // Mailgun
+    // Remote config - emails
+
+    // Remote config - Emails
+
+   public static String fromRegistrationEmailAddress() {
+        return getRemoteConfig("email_address_registration_from");
+    }
+
+    public static String fromPaymentEmailAddress() {
+        return getRemoteConfig("email_address_payment_from");
+    }
+
+    public static String fromBookingEmailAddress() {
+        return getRemoteConfig("email_address_booking_from");
+    }
+
+    public static String fromUniformOrderEmailAddress() {
+        return getRemoteConfig("email_address_uniform_from");
+    }
+
+    public static String toEmailAddress() {
+        //return getRemoteConfig("email_address_to");
+        return "d.palmer101@googlemail.com";
+    }
 
     public static String mailgunDomain() {
         return getRemoteConfig("mailgun_domain");

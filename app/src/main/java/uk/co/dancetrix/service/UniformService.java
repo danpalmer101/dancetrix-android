@@ -14,7 +14,8 @@ public interface UniformService {
     void getUniformOrderItems(Context ctx,
                               Callback<List<UniformGroup>, Exception> callback);
 
-    void orderUniform(String name,
+    void orderUniform(Context ctx,
+                      String name,
                       String studentName,
                       String email,
                       String packageName,

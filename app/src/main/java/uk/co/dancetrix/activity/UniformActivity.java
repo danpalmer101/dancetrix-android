@@ -181,6 +181,7 @@ public class UniformActivity extends AbstractFormActivity {
                         }
 
                         ServiceLocator.UNIFORM_SERVICE.orderUniform(
+                                current,
                                 formBuilder.formMap.get("name").getValue(),
                                 formBuilder.formMap.get("student_name").getValue(),
                                 formBuilder.formMap.get("email").getValue(),

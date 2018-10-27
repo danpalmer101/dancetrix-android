@@ -35,14 +35,15 @@ public class MockUniformService implements UniformService {
     }
 
     @Override
-    public void orderUniform(String name,
-                             String studentName,
-                             String email,
-                             String packageName,
-                             boolean paymentMade,
-                             String paymentMethod,
-                             String additionalInfo,
-                             Map<UniformItem, String> orderItems,
+    public void orderUniform(final Context ctx,
+                             final String name,
+                             final String studentName,
+                             final String email,
+                             final String packageName,
+                             final boolean paymentMade,
+                             final String paymentMethod,
+                             final String additionalInfo,
+                             final Map<UniformItem, String> orderItems,
                              final Callback<Boolean, Exception> callback) {
         AsyncTask.execute(() -> callback.onSuccess(true));
     }

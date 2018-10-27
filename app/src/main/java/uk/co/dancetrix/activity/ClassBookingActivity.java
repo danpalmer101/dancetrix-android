@@ -41,6 +41,7 @@ public class ClassBookingActivity extends AbstractFormActivity {
         setContentView(R.layout.activity_class_booking);
 
         ClassDetails classDetails = (ClassDetails)getIntent().getSerializableExtra(INTENT_KEY_CLASS_DETAILS);
+        @SuppressWarnings("unchecked")
         List<DateInterval> selectedDates = (List<DateInterval>)getIntent().getSerializableExtra(INTENT_KEY_CLASS_DATES);
         List<String> selectedDateStrings = new ArrayList<>();
         for (DateInterval date : selectedDates) {
@@ -101,6 +102,7 @@ public class ClassBookingActivity extends AbstractFormActivity {
 
                     if (isValid) {
                         ServiceLocator.BOOKING_SERVICE.bookClass(
+                                current,
                                 classDetails,
                                 selectedDates,
                                 formBuilder.formMap.get("student_name").getValue(),

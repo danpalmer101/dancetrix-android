@@ -19,7 +19,8 @@ public class FirebaseUniformService extends FirebaseStorageService implements Un
     }
 
     @Override
-    public void getUniformOrderItems(Context ctx, Callback<List<UniformGroup>, Exception> callback) {
+    public void getUniformOrderItems(final Context ctx,
+                                     final Callback<List<UniformGroup>, Exception> callback) {
         loadFile("uniforms.csv",
                 csvString -> {
                     final List<UniformGroup> uniformGroups = UniformParser.parse(csvString);
@@ -29,7 +30,8 @@ public class FirebaseUniformService extends FirebaseStorageService implements Un
     }
 
     @Override
-    public void orderUniform(final String name,
+    public void orderUniform(final Context ctx,
+                             final String name,
                              final String studentName,
                              final String email,
                              final String packageName,

@@ -75,6 +75,15 @@ abstract class AbstractFormActivity extends BaseActivity {
             }
             return super.setOptionsSelected(options);
         }
+
+        @Override
+        public String getValue() {
+            if (!getOptionsSelected().isEmpty()) {
+                return getOptionsSelected().get(0);
+            } else {
+                return super.getValue();
+            }
+        }
     }
 
     /**

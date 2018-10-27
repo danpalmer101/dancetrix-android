@@ -1,7 +1,6 @@
-package uk.co.dancetrix.service.mock;
+package uk.co.dancetrix.service.impl;
 
 import android.content.Context;
-import android.os.AsyncTask;
 
 import java.util.List;
 
@@ -10,7 +9,7 @@ import uk.co.dancetrix.domain.DateInterval;
 import uk.co.dancetrix.service.BookingService;
 import uk.co.dancetrix.service.Callback;
 
-public class MockBookingService implements BookingService {
+public class EmailBookingService implements BookingService {
 
     @Override
     public void bookClass(final Context ctx,
@@ -19,7 +18,8 @@ public class MockBookingService implements BookingService {
                           final String name,
                           final String email,
                           final Callback<Boolean, Exception> callback) {
-        AsyncTask.execute(() -> callback.onSuccess(true));
+        // TODO : Implement
+        callback.onError(new UnsupportedOperationException("Not implemented"));
     }
 
 }

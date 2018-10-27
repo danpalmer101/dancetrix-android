@@ -138,6 +138,7 @@ public class PaymentFormActivity extends AbstractFormActivity {
                     if (isValid) {
                         try {
                             ServiceLocator.PAYMENT_SERVICE.notify(
+                                    current,
                                     DATE_FORMAT.parse(formBuilder.formMap.get("date").getValue()),
                                     Double.parseDouble(formBuilder.formMap.get("amount").getValue()),
                                     formBuilder.formMap.get("name").getValue(),

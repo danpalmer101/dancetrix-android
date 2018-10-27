@@ -1,6 +1,7 @@
 package uk.co.dancetrix.service.impl;
 
 import android.content.Context;
+import android.support.annotation.NonNull;
 import android.util.Base64;
 import android.util.Log;
 
@@ -27,16 +28,19 @@ public class MailgunEmailService implements EmailService {
     private static final String BODY_HTML_TEMPLATE = "%s_body_html";
 
     @Override
-    public void sendEmail(Context ctx, String templateName, String from, String to,
-                          Map<String, Object> templateParameters,
-                          uk.co.dancetrix.service.Callback<Boolean, Exception> callback) {
+    public void sendEmail(final Context ctx,
+                          final String templateName,
+                          final String from,
+                          final String to,
+                          final Map<String, Object> templateParameters,
+                          final uk.co.dancetrix.service.Callback<Boolean, Exception> callback) {
         try {
             send(from,
-                    to,
-                    buildTemplate(ctx, String.format(SUBJECT_TEMPLATE, templateName), templateParameters),
-                    buildTemplate(ctx, String.format(BODY_PLAIN_TEMPLATE, templateName), templateParameters),
-                    buildTemplate(ctx, String.format(BODY_HTML_TEMPLATE, templateName), templateParameters),
-                    callback);
+                 to,
+                 buildTemplate(ctx, String.format(SUBJECT_TEMPLATE, templateName), templateParameters),
+                 buildTemplate(ctx, String.format(BODY_PLAIN_TEMPLATE, templateName), templateParameters),
+                 buildTemplate(ctx, String.format(BODY_HTML_TEMPLATE, templateName), templateParameters),
+                 callback);
         } catch (Exception e) {
             Log.e("Email", "Error sending email", e);
 
@@ -44,7 +48,9 @@ public class MailgunEmailService implements EmailService {
         }
     }
 
-    private String buildTemplate(Context ctx, String templateName, Map<String, Object> templateParameters)
+    private String buildTemplate(final Context ctx,
+                                 final String templateName,
+                                 final Map<String, Object> templateParameters)
             throws Exception {
         int rawId = ctx.getResources().getIdentifier(
                 templateName,
@@ -52,12 +58,21 @@ public class MailgunEmailService implements EmailService {
                 ctx.getPackageName());
 
         String template = FileReader.readFile(ctx, rawId);
-        return Mustache.compiler().compile(template).execute(templateParameters);
+        return Mustache.compiler().defaultValue("").compile(template).execute(templateParameters);
     }
 
-    protected void send(String from, String to, String subject, String plainText, String htmlText,
-                        final uk.co.dancetrix.service.Callback<Boolean, Exception> callback) {
+    private void send(final String from,
+                      final String to,
+                      final String subject,
+                      final String plainText,
+                      final String htmlText,
+                      final uk.co.dancetrix.service.Callback<Boolean, Exception> callback) {
         try {
+            Log.d("Email", "Sending email from " + from + " to " + to);
+            Log.d("Email", "Subject: " + subject);
+            Log.d("Email", "HTML: " + htmlText);
+            Log.d("Email", "Plain: " + plainText);
+
             RequestBody body = new FormBody.Builder()
                 .add("from", from)
                 .add("to", to)
@@ -77,14 +92,14 @@ public class MailgunEmailService implements EmailService {
             new OkHttpClient().newCall(request).enqueue(
                     new Callback() {
                         @Override
-                        public void onFailure(Call call, IOException e) {
+                        public void onFailure(@NonNull Call call, @NonNull IOException e) {
                             Log.d("Email", "Error sending email", e);
 
                             callback.onError(e);
                         }
 
                         @Override
-                        public void onResponse(Call call, Response response) throws IOException {
+                        public void onResponse(@NonNull Call call, @NonNull Response response) throws IOException {
                             Log.d("Email", "Email response: " + response.toString()
                                     + ", Response body: " + response.body().string());
 
