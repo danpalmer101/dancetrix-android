@@ -83,8 +83,8 @@ public class Configuration {
     }
 
     public static String toEmailAddress() {
-        //return getRemoteConfig("email_address_to");
-        return "d.palmer101@googlemail.com";
+        return getRemoteConfig("email_address_to");
+        //return "d.palmer101@googlemail.com";
     }
 
     public static String mailgunDomain() {
