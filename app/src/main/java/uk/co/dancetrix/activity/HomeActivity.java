@@ -8,6 +8,7 @@ import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.ViewParent;
+import android.widget.Toast;
 
 import com.crashlytics.android.Crashlytics;
 
@@ -17,6 +18,7 @@ import uk.co.dancetrix.domain.ClassMenu;
 import uk.co.dancetrix.service.Callback;
 import uk.co.dancetrix.service.ServiceLocator;
 import uk.co.dancetrix.util.Configuration;
+import uk.co.dancetrix.util.NetworkUtil;
 import uk.co.dancetrix.util.Notification;
 import uk.co.dancetrix.util.PDF;
 
@@ -42,6 +44,11 @@ public class HomeActivity extends BaseActivity {
         removeView(R.id.makePaymentButton, !Configuration.paymentEnabled());
         removeView(R.id.orderUniformButton, !Configuration.uniformEnabled());
         removeView(R.id.aboutUsButton, !Configuration.aboutEnabled());
+
+        // Check network status in case network is unavailable when the app starts
+        if (NetworkUtil.getConnectivityStatus(this) == NetworkUtil.TYPE_NOT_CONNECTED) {
+            Toast.makeText(this, NetworkUtil.getConnectivityStatusString(this), Toast.LENGTH_LONG).show();
+        }
     }
 
     private void removeView(int id, boolean ifFlag) {
