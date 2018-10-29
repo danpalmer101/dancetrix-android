@@ -11,8 +11,9 @@ default_platform :android
 lane :beta do
   # build the release variant
   build_android_app(task: "clean")
-  build_android_app(task: "assembleRelease",
-                    flavor: "live",
+  build_android_app(task: "assemble",
+                    flavor: "Live",
+                    build_type: "Debug",
                     properties: {
                       "vCode" => number_of_commits,
                       "vName" => last_git_tag
@@ -20,9 +21,9 @@ lane :beta do
 
   # upload to Beta by Crashlytics
   crashlytics(
-    api_token: "",
-    build_secret: ""
-    emails: [""]
+    api_token: ENV["CRASHLYTICS_API_TOKEN"],
+    build_secret: ENV["CRASHLYTICS_BUILD_SECRET"],
+    emails: ["developers", "android-testers"]
   )
 
 end
