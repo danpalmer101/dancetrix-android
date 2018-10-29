@@ -50,9 +50,10 @@ public class FirebaseUniformService extends FirebaseStorageService implements Un
                              final Callback<Boolean, Exception> callback) {
         Log.d("Uniform", "Sending uniform order email");
 
-        ServiceLocator.EMAIL_SERVICE.sendEmail(ctx,
+        ServiceLocator.EMAIL_SERVICE.sendEmail(
+                ctx,
                 "uniform_order",
-                Configuration.fromBookingEmailAddress(),
+                Configuration.fromUniformOrderEmailAddress(),
                 Configuration.toEmailAddress(),
                 Collections.unmodifiableMap(new HashMap<String, Object>() {
                     {

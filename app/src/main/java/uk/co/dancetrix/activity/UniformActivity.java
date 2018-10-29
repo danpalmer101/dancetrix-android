@@ -3,9 +3,11 @@ package uk.co.dancetrix.activity;
 import android.app.Activity;
 import android.content.Intent;
 import android.graphics.Color;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.content.ContextCompat;
 import android.util.Log;
+import android.view.View;
 import android.widget.LinearLayout;
 
 import com.dariopellegrini.formbuilder.FormBuilder;
@@ -26,6 +28,9 @@ import uk.co.dancetrix.domain.UniformItem;
 import uk.co.dancetrix.service.Callback;
 import uk.co.dancetrix.service.ServiceLocator;
 import uk.co.dancetrix.util.Notification;
+import uk.co.dancetrix.util.PDF;
+
+import static uk.co.dancetrix.util.Configuration.getUniformCatalog;
 
 public class UniformActivity extends AbstractFormActivity {
 
@@ -66,8 +71,31 @@ public class UniformActivity extends AbstractFormActivity {
         });
     }
 
+    public void viewCatalog(View view) {
+        final Activity current = this;
+
+        PDF.open(this, Uri.parse(getUniformCatalog()), new Callback<Boolean, Exception>() {
+            @Override
+            public void onSuccess(Boolean response) {
+                Log.d("Uniform", "Displayed PDF");
+            }
+
+            @Override
+            public void onError(Exception exception) {
+                Log.e("Uniform", "Unable to display PDF", exception);
+
+                Notification.showNotification(
+                        current,
+                        getMainId(),
+                        R.string.uniform_load_error,
+                        Notification.WARNING_BG_COLOR,
+                        Notification.WARNING_TXT_COLOR);
+            }
+        });
+    }
+
     private void buildForm() {
-        LinearLayout formLayout = findViewById(R.id.paymentFormContainer);
+        LinearLayout formLayout = findViewById(R.id.uniformFormContainer);
         this.formBuilder = new FormBuilder(this, formLayout);
 
         final Activity current = this;

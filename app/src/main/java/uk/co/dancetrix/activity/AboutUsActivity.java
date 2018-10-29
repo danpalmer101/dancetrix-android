@@ -2,9 +2,7 @@ package uk.co.dancetrix.activity;
 
 import android.os.Bundle;
 import android.os.Handler;
-import android.support.v7.app.AppCompatActivity;
 import android.view.View;
-import android.webkit.ValueCallback;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
 
@@ -35,16 +33,11 @@ public class AboutUsActivity extends BaseActivity {
         webView.setWebViewClient(new WebViewClient() {
             @Override
             public void onPageFinished(WebView view, String url) {
-                view.evaluateJavascript(javascript, new ValueCallback<String>() {
-                    @Override
-                    public void onReceiveValue(String s) {
-                        new Handler().postDelayed(new Runnable() {
-                            public void run() {
-                                webView.setVisibility(View.VISIBLE);
-                            }
-                        }, 500);
-                    }
-                });
+                view.evaluateJavascript(javascript,
+                        s ->
+                            new Handler().postDelayed(() ->
+                                webView.setVisibility(View.VISIBLE), 500)
+                );
             }
         });
         webView.getSettings().setJavaScriptEnabled(true);

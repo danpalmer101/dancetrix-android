@@ -15,9 +15,21 @@
         android:elevation="4dp"
         android:theme="@style/ThemeOverlay.AppCompat.ActionBar"
         app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
-        app:title="@string/order_uniforms" />
+        app:title="@string/order_uniforms">
+        <Button
+            android:id="@+id/viewCatalogButton"
+            style="@style/Widget.AppCompat.Button.Borderless"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_gravity="end"
+            android:gravity="center_vertical"
+            android:onClick="viewCatalog"
+            android:text="@string/uniform_view_catalog"
+            android:textColor="?attr/colorAccent" />
+    </android.support.v7.widget.Toolbar>
 
     <ScrollView
+        android:id="@+id/uniformScrollView"
         android:layout_width="0dp"
         android:layout_height="0dp"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -25,7 +37,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/toolbar">
         <LinearLayout
-            android:id="@+id/paymentFormContainer"
+            android:id="@+id/uniformFormContainer"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical" />

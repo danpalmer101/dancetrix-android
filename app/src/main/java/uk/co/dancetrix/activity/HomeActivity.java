@@ -18,6 +18,9 @@ import uk.co.dancetrix.service.Callback;
 import uk.co.dancetrix.service.ServiceLocator;
 import uk.co.dancetrix.util.Configuration;
 import uk.co.dancetrix.util.Notification;
+import uk.co.dancetrix.util.PDF;
+
+import static uk.co.dancetrix.util.Configuration.getUniformCatalog;
 
 public class HomeActivity extends BaseActivity {
 

@@ -32,7 +32,8 @@ public class EmailBookingService implements BookingService {
             dateStrings.add(StringFormatter.formatDateTime(date.getStart()));
         }
 
-        ServiceLocator.EMAIL_SERVICE.sendEmail(ctx,
+        ServiceLocator.EMAIL_SERVICE.sendEmail(
+                ctx,
                 "class_booking",
                 Configuration.fromBookingEmailAddress(),
                 Configuration.toEmailAddress(),

@@ -28,7 +28,8 @@ public class EmailPaymentService implements PaymentService {
                        final Callback<Boolean, Exception> callback) {
         Log.d("Payment", "Sending payment notification email");
 
-        ServiceLocator.EMAIL_SERVICE.sendEmail(ctx,
+        ServiceLocator.EMAIL_SERVICE.sendEmail(
+                ctx,
                 "payment_notify",
                 Configuration.fromPaymentEmailAddress(),
                 Configuration.toEmailAddress(),
