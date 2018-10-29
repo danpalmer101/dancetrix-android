@@ -5,7 +5,15 @@ fastlane_version "2.68.0"
 
 default_platform :android
 
-lane :build do 
+private_lane :set_version do |options|
+  if options[:version]
+    add_git_tag(tag: options[:version])
+  end
+end
+
+private_lane :build do |options|
+  set_version(options)
+
   # build the debug/live variant
   build_android_app(task: "clean")
   build_android_app(task: "assemble",
@@ -17,8 +25,8 @@ lane :build do
                      })
 end
 
-lane :alpha do
-  build()
+lane :alpha do |options|
+  build(options)
 
   # upload to Crashlytics
   crashlytics(
@@ -28,8 +36,8 @@ lane :alpha do
   )
 end
 
-lane :beta do
-  build()
+lane :beta do |options|
+  build(options)
 
   # upload to Crashlytics
   crashlytics(
