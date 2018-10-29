@@ -11,3 +11,4 @@ fastlane/installer
 fastlane/report.xml
 app/release
 secrets.properties
+fastlane/.env.default
