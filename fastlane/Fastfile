@@ -19,7 +19,7 @@ lane :beta do
 
   # upload to Beta by Crashlytics
   crashlytics(
-    api_token: "1afcdbced5cafaf41c2ad59315996759c75d98d1",
-    build_secret: "8c6f51ce36809b5bba45c2d6c91ce56278d68889750e8a5dd2b9c6f781e585f0"
+    api_token: "",
+    build_secret: ""
   )
 end
