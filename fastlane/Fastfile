@@ -12,10 +12,11 @@ lane :beta do
   # build the release variant
   build_android_app(task: "clean")
   build_android_app(task: "assembleRelease",
-  					properties: {
-    					"vCode" => number_of_commits,
-    					"vName" => last_git_tag
-  					})
+                    flavor: "live",
+                    properties: {
+                      "vCode" => number_of_commits,
+                      "vName" => last_git_tag
+                     })
 
   # upload to Beta by Crashlytics
   crashlytics(

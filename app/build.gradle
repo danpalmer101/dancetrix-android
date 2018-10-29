@@ -24,6 +24,10 @@ android {
         versionCode vCode as Integer
         versionName vName
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+
+        buildConfigField "String", "OVERRIDE_TO_EMAIL", 'null'
+        buildConfigField "boolean", "MOCK_SERVICES", 'false'
+        buildConfigField "boolean", "MOCK_EMAIL", 'false'
     }
 
     buildTypes {
@@ -33,6 +37,32 @@ android {
             signingConfig signingConfigs.debug
         }
     }
+
+    flavorDimensions "variant"
+
+    productFlavors {
+        local {
+            dimension "variant"
+            buildConfigField "String", "OVERRIDE_TO_EMAIL", "\"$SECRET_EMAIL\""
+        }
+        mock {
+            dimension "variant"
+            buildConfigField "boolean", "MOCK_SERVICES", 'true'
+            buildConfigField "boolean", "MOCK_EMAIL", 'true'
+        }
+        live {
+            dimension "variant"
+        }
+    }
+
+    variantFilter { variant ->
+        def names = variant.flavors*.name
+        // For release, only build the live variant
+        if (variant.buildType.name == "release" && !names.contains("live")) {
+            variant.ignore = true
+        }
+    }
+
     testOptions {
         unitTests.returnDefaultValues = true
     }

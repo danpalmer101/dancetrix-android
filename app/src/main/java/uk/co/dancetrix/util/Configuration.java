@@ -83,8 +83,9 @@ public class Configuration {
     }
 
     public static String toEmailAddress() {
-        return getRemoteConfig("email_address_to");
-        //return "d.palmer101@googlemail.com";
+        return BuildConfig.OVERRIDE_TO_EMAIL != null
+                ? getRemoteConfig("email_address_to")
+                : BuildConfig.OVERRIDE_TO_EMAIL;
     }
 
     public static String mailgunDomain() {

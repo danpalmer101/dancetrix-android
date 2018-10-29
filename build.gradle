@@ -1,5 +1,14 @@
 // Top-level build file where you can add configuration options common to all sub-projects/modules.
 
+def secrets = new Properties()
+def secretsFile = new File('secrets.properties')
+
+if (secretsFile.canRead()) {
+    secrets.load(new FileInputStream(secretsFile))
+} else {
+    println 'secrets.properties not found'
+}
+
 buildscript {
     
     repositories {
@@ -26,4 +35,8 @@ allprojects {
 
 task clean(type: Delete) {
     delete rootProject.buildDir
+}
+
+ext {
+    SECRET_EMAIL=secrets.email
 }
