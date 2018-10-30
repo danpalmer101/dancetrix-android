@@ -48,6 +48,11 @@ public abstract class BaseActivity extends AppCompatActivity {
     public void startActivity(Intent intent) {
         super.startActivity(intent);
 
+        // No animation for the standard VIEW action
+        if (Intent.ACTION_VIEW.equals(intent.getAction())) {
+            return;
+        }
+
         if ((intent.getFlags() & Intent.FLAG_ACTIVITY_CLEAR_TOP) != 0) {
             // If we are clearing the activity stack, then slide in reverse (left to right)
             overridePendingTransition(R.anim.slide_in_reverse, R.anim.slide_out_reverse);
