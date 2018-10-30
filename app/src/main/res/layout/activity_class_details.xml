@@ -14,16 +14,8 @@
         android:background="?attr/colorPrimary"
         android:elevation="4dp"
         android:theme="@style/ThemeOverlay.AppCompat.ActionBar"
-        app:popupTheme="@style/ThemeOverlay.AppCompat.Light">
-
-        <ImageView
-            android:layout_width="wrap_content"
-            android:contentDescription="@string/app_name"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:src="@drawable/nav_logo"/>
-
-    </android.support.v7.widget.Toolbar>
+        app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
+        app:title="@string/booking_class_select_dates" />
 
     <TextView
         android:id="@+id/classInfoView"
@@ -61,7 +53,7 @@
         android:layout_marginEnd="16dp"
         android:layout_marginStart="16dp"
         android:background="@drawable/submit_button"
-        android:text="@string/booking_class_dates"
+        android:text="@string/booking_class_book_dates"
         android:onClick="bookDates"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"

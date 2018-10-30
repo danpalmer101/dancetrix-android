@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.util.TypedValue;
 import android.view.View;
@@ -65,6 +66,8 @@ public class ClassMenuActivity extends BaseActivity {
     }
 
     private void displayClassMenu(ClassMenu classMenu) {
+        ((Toolbar)findViewById(R.id.toolbar)).setTitle(classMenu.getName());
+
         for (ClassMenu subMenu : classMenu.getChildren()) {
             Button button;
             if (subMenu.getClassDetails() == null) {
