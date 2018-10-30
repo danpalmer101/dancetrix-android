@@ -1,10 +1,11 @@
 package uk.co.dancetrix.activity;
 
-import android.app.Activity;
+import android.animation.ValueAnimator;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
-import android.util.Log;
+import android.os.Handler;
+import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.ViewParent;
@@ -14,15 +15,8 @@ import com.crashlytics.android.Crashlytics;
 
 import io.fabric.sdk.android.Fabric;
 import uk.co.dancetrix.R;
-import uk.co.dancetrix.domain.ClassMenu;
-import uk.co.dancetrix.service.Callback;
-import uk.co.dancetrix.service.ServiceLocator;
 import uk.co.dancetrix.util.Configuration;
 import uk.co.dancetrix.util.NetworkUtil;
-import uk.co.dancetrix.util.Notification;
-import uk.co.dancetrix.util.PDF;
-
-import static uk.co.dancetrix.util.Configuration.getUniformCatalog;
 
 public class HomeActivity extends BaseActivity {
 
@@ -49,6 +43,23 @@ public class HomeActivity extends BaseActivity {
         if (NetworkUtil.getConnectivityStatus(this) == NetworkUtil.TYPE_NOT_CONNECTED) {
             Toast.makeText(this, NetworkUtil.getConnectivityStatusString(this), Toast.LENGTH_LONG).show();
         }
+
+        // Set toolbar to full height
+        Toolbar toolbar = findViewById(R.id.toolbar);
+        int toolbarHeight = toolbar.getLayoutParams().height;
+        toolbar.getLayoutParams().height = findViewById(R.id.activity_home).getLayoutParams().height;
+
+        // Animate it to original height
+        new Handler().postDelayed(() -> {
+            ValueAnimator va = ValueAnimator.ofInt(toolbar.getHeight(), toolbarHeight);
+            va.setDuration(200);
+            va.addUpdateListener(valueAnimator -> {
+                        toolbar.getLayoutParams().height = (Integer)valueAnimator.getAnimatedValue();
+                        toolbar.requestLayout();
+                    }
+            );
+            va.start();
+        },1000);
     }
 
     private void removeView(int id, boolean ifFlag) {
