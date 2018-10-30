@@ -64,30 +64,7 @@ public class HomeActivity extends BaseActivity {
     }
 
     public void displayBookings(View view) {
-        final Activity current = this;
-
-        ServiceLocator.CLASS_SERVICE.getClassMenu(this, new Callback<ClassMenu, Exception>() {
-            @Override
-            public void onSuccess(final ClassMenu response) {
-                current.runOnUiThread(() -> {
-                    Intent intent = new Intent(current, ClassMenuActivity.class);
-                    intent.putExtra(ClassMenuActivity.INTENT_KEY_CLASS_MENU, response);
-                    current.startActivity(intent);
-                });
-            }
-
-            @Override
-            public void onError(Exception exception) {
-                Log.w("Classes", "Error loading class menu", exception);
-
-                Notification.showNotification(
-                        current,
-                        getMainId(),
-                        R.string.booking_class_menu_error,
-                        Notification.WARNING_BG_COLOR,
-                        Notification.WARNING_TXT_COLOR);
-            }
-        });
+        startActivity(new Intent(this, ClassMenuActivity.class));
     }
 
     public void displayCalendar(View view) {

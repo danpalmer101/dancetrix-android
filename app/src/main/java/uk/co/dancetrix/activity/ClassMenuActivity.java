@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.util.Log;
 import android.util.TypedValue;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,6 +13,8 @@ import android.widget.LinearLayout;
 
 import uk.co.dancetrix.R;
 import uk.co.dancetrix.domain.ClassMenu;
+import uk.co.dancetrix.service.Callback;
+import uk.co.dancetrix.service.ServiceLocator;
 import uk.co.dancetrix.util.Display;
 import uk.co.dancetrix.util.Notification;
 
@@ -32,24 +35,46 @@ public class ClassMenuActivity extends BaseActivity {
         ClassMenu classMenu = (ClassMenu)getIntent().getSerializableExtra(INTENT_KEY_CLASS_MENU);
 
         if (classMenu == null) {
-            Notification.showNotification(
-                    this,
-                    getMainId(),
-                    R.string.booking_class_menu_error,
-                    Notification.WARNING_BG_COLOR,
-                    Notification.WARNING_TXT_COLOR);
+            loadClassMenu();
         } else {
-            for (ClassMenu subMenu : classMenu.getChildren()) {
-                Button button;
-                if (subMenu.getClassDetails() == null) {
-                    button = createClassMenuButton(subMenu);
-                } else {
-                    button = createClassDetailsButton(subMenu);
-                }
+            displayClassMenu(classMenu);
+        }
+    }
 
-                ViewGroup linearLayout = findViewById(R.id.classMenuListLayout);
-                linearLayout.addView(button);
+    private void loadClassMenu() {
+        final Activity current = this;
+
+        ServiceLocator.CLASS_SERVICE.getClassMenu(this, new Callback<ClassMenu, Exception>() {
+            @Override
+            public void onSuccess(final ClassMenu response) {
+                displayClassMenu(response);
             }
+
+            @Override
+            public void onError(Exception exception) {
+                Log.w("Classes", "Error loading class menu", exception);
+
+                Notification.showNotification(
+                        current,
+                        getMainId(),
+                        R.string.booking_class_menu_error,
+                        Notification.WARNING_BG_COLOR,
+                        Notification.WARNING_TXT_COLOR);
+            }
+        });
+    }
+
+    private void displayClassMenu(ClassMenu classMenu) {
+        for (ClassMenu subMenu : classMenu.getChildren()) {
+            Button button;
+            if (subMenu.getClassDetails() == null) {
+                button = createClassMenuButton(subMenu);
+            } else {
+                button = createClassDetailsButton(subMenu);
+            }
+
+            ViewGroup linearLayout = findViewById(R.id.classMenuListLayout);
+            linearLayout.addView(button);
         }
     }
 
