@@ -15,16 +15,6 @@ Install _fastlane_ using
 or alternatively using `brew cask install fastlane`
 
 # Available Actions
-### set_version
-```
-fastlane set_version
-```
-
-### build
-```
-fastlane build
-```
-
 ### alpha
 ```
 fastlane alpha
