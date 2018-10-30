@@ -83,7 +83,7 @@ public class Configuration {
     }
 
     public static String toEmailAddress() {
-        return BuildConfig.OVERRIDE_TO_EMAIL != null
+        return BuildConfig.OVERRIDE_TO_EMAIL == null
                 ? getRemoteConfig("email_address_to")
                 : BuildConfig.OVERRIDE_TO_EMAIL;
     }
