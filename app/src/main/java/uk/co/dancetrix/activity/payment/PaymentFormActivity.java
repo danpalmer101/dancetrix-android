@@ -1,4 +1,4 @@
-package uk.co.dancetrix.activity;
+package uk.co.dancetrix.activity.payment;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -22,6 +22,8 @@ import java.util.List;
 import java.util.Locale;
 
 import uk.co.dancetrix.R;
+import uk.co.dancetrix.activity.AbstractFormActivity;
+import uk.co.dancetrix.activity.HomeActivity;
 import uk.co.dancetrix.service.Callback;
 import uk.co.dancetrix.service.ServiceLocator;
 import uk.co.dancetrix.util.Notification;
@@ -133,9 +135,7 @@ public class PaymentFormActivity extends AbstractFormActivity {
                 .setRunnable(() -> {
                     clearAllErrors();
 
-                    boolean isValid = formBuilder.validate();
-
-                    if (isValid) {
+                    if (formBuilder.validate()) {
                         try {
                             ServiceLocator.PAYMENT_SERVICE.notify(
                                     current,

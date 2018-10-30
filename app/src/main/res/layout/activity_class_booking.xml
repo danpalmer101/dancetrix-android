@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="uk.co.dancetrix.activity.ClassBookingActivity"
+    tools:context="uk.co.dancetrix.activity.booking.ClassBookingActivity"
     android:id="@+id/activity_class_booking">
 
     <android.support.v7.widget.Toolbar

@@ -34,46 +34,53 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".activity.PaymentActivity"
+            android:name=".activity.payment.PaymentActivity"
             android:parentActivityName=".activity.HomeActivity">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".activity.HomeActivity" />
         </activity>
         <activity
-            android:name=".activity.PaymentFormActivity"
-            android:parentActivityName=".activity.PaymentActivity">
+            android:name=".activity.payment.PaymentFormActivity"
+            android:parentActivityName=".activity.payment.PaymentActivity">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value=".activity.PaymentActivity" />
+                android:value=".activity.payment.PaymentActivity" />
         </activity>
         <activity
-            android:name=".activity.UniformActivity"
+            android:name=".activity.uniform.UniformActivity"
             android:parentActivityName=".activity.HomeActivity">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".activity.HomeActivity" />
         </activity>
         <activity
-            android:name=".activity.AboutUsActivity"
+            android:name=".activity.about.AboutUsActivity"
             android:parentActivityName=".activity.HomeActivity">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".activity.HomeActivity" />
         </activity>
-        <activity android:name=".activity.ClassMenuActivity"
+        <activity android:name=".activity.booking.ClassMenuActivity"
             android:parentActivityName=".activity.HomeActivity">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".activity.HomeActivity" />
         </activity>
-        <activity android:name=".activity.ClassDetailsActivity"
+        <activity android:name=".activity.booking.ClassDetailsActivity"
             android:parentActivityName=".activity.HomeActivity">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".activity.HomeActivity" />
         </activity>
-        <activity android:name=".activity.ClassBookingActivity"
+        <activity android:name=".activity.booking.ClassBookingActivity"
+            android:parentActivityName=".activity.HomeActivity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".activity.HomeActivity" />
+        </activity>
+        <activity
+            android:name=".activity.registration.RegisterMenuActivity"
             android:parentActivityName=".activity.HomeActivity">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"

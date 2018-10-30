@@ -1,4 +1,4 @@
-package uk.co.dancetrix.activity;
+package uk.co.dancetrix.activity.booking;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -19,6 +19,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 import uk.co.dancetrix.R;
+import uk.co.dancetrix.activity.AbstractFormActivity;
+import uk.co.dancetrix.activity.HomeActivity;
 import uk.co.dancetrix.domain.ClassDetails;
 import uk.co.dancetrix.domain.DateInterval;
 import uk.co.dancetrix.service.Callback;

@@ -1,4 +1,4 @@
-package uk.co.dancetrix.activity;
+package uk.co.dancetrix.activity.booking;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -13,6 +13,7 @@ import android.widget.Button;
 import android.widget.LinearLayout;
 
 import uk.co.dancetrix.R;
+import uk.co.dancetrix.activity.BaseActivity;
 import uk.co.dancetrix.domain.ClassMenu;
 import uk.co.dancetrix.service.Callback;
 import uk.co.dancetrix.service.ServiceLocator;

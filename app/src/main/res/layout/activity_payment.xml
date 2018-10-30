@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="uk.co.dancetrix.activity.PaymentActivity"
+    tools:context="uk.co.dancetrix.activity.payment.PaymentActivity"
     android:id="@+id/activity_payment_details">
 
     <android.support.v7.widget.Toolbar

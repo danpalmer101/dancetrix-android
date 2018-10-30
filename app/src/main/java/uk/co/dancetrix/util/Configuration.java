@@ -42,6 +42,10 @@ public class Configuration {
 
     // Remote config - features
 
+    public static boolean registerDancerEnabled() {
+        return isTrue(getRemoteConfig("feature_registration"));
+    }
+
     public static boolean bookClassEnabled() {
         return isTrue(getRemoteConfig("feature_book"));
     }

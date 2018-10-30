@@ -1,4 +1,4 @@
-package uk.co.dancetrix.activity;
+package uk.co.dancetrix.activity.about;
 
 import android.os.Bundle;
 import android.os.Handler;
@@ -7,6 +7,7 @@ import android.webkit.WebView;
 import android.webkit.WebViewClient;
 
 import uk.co.dancetrix.R;
+import uk.co.dancetrix.activity.BaseActivity;
 import uk.co.dancetrix.util.Configuration;
 
 public class AboutUsActivity extends BaseActivity {

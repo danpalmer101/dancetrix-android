@@ -15,6 +15,11 @@ import com.crashlytics.android.Crashlytics;
 
 import io.fabric.sdk.android.Fabric;
 import uk.co.dancetrix.R;
+import uk.co.dancetrix.activity.about.AboutUsActivity;
+import uk.co.dancetrix.activity.booking.ClassMenuActivity;
+import uk.co.dancetrix.activity.payment.PaymentActivity;
+import uk.co.dancetrix.activity.registration.RegisterMenuActivity;
+import uk.co.dancetrix.activity.uniform.UniformActivity;
 import uk.co.dancetrix.util.Configuration;
 import uk.co.dancetrix.util.NetworkUtil;
 
@@ -32,6 +37,7 @@ public class HomeActivity extends BaseActivity {
 
         Fabric.with(this, new Crashlytics());
 
+        removeView(R.id.registerDancerButton, !Configuration.registerDancerEnabled());
         removeView(R.id.bookClassButton, !Configuration.bookClassEnabled());
         //removeView(R.id.calendarButton, !Configuration.calendarEnabled());
         removeView(R.id.calendarButton, true);
@@ -72,6 +78,10 @@ public class HomeActivity extends BaseActivity {
                 }
             }
         }
+    }
+
+    public void displayRegisterDancer(View view) {
+        startActivity(new Intent(this, RegisterMenuActivity.class));
     }
 
     public void displayBookings(View view) {

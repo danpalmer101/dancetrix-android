@@ -13,7 +13,7 @@ import com.dariopellegrini.formbuilder.FormValidation;
 import java.util.ArrayList;
 import java.util.List;
 
-abstract class AbstractFormActivity extends BaseActivity {
+public abstract class AbstractFormActivity extends BaseActivity {
 
     protected FormBuilder formBuilder;
 
@@ -54,7 +54,12 @@ abstract class AbstractFormActivity extends BaseActivity {
      * HACK : Override the form element to prevent multiple options being selected on a single select form element
      * https://github.com/dariopellegrini/FormBuilder/issues/1
      */
-    class SingleSelectFormElement extends FormElement {
+    protected class SingleSelectFormElement extends FormElement {
+
+        public SingleSelectFormElement() {
+            super();
+        }
+
         @Override
         public FormElement setOptions(List<String> options) {
             super.setOptions(new ArrayList<>());
@@ -90,11 +95,11 @@ abstract class AbstractFormActivity extends BaseActivity {
      * HACK : Custom validation for SELECTION FormElements
      * https://github.com/dariopellegrini/FormBuilder/issues/2
      */
-    class RequiredSelectFormValidation extends FormValidation {
+    protected class RequiredSelectFormValidation extends FormValidation {
 
         private FormElement formElement;
 
-        RequiredSelectFormValidation(FormElement formElement) {
+        public RequiredSelectFormValidation(FormElement formElement) {
             this.formElement = formElement;
         }
 

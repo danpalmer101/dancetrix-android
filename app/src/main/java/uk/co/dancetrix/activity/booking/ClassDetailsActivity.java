@@ -1,4 +1,4 @@
-package uk.co.dancetrix.activity;
+package uk.co.dancetrix.activity.booking;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -16,6 +16,7 @@ import java.util.List;
 
 import ru.noties.markwon.Markwon;
 import uk.co.dancetrix.R;
+import uk.co.dancetrix.activity.BaseActivity;
 import uk.co.dancetrix.domain.ClassDetails;
 import uk.co.dancetrix.domain.DateInterval;
 import uk.co.dancetrix.service.Callback;
