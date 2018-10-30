@@ -2,5 +2,7 @@
 <resources>
     <style name="AppTheme" parent="Theme.AppCompat.NoActionBar">
         <item name="colorAccent">@color/colorAccent</item>
+
+        <item name="actionBarSize">68dp</item>
     </style>
 </resources>
