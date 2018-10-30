@@ -6,7 +6,7 @@
     <string name="network_wifi">Connected to a Wi-Fi network</string>
     <string name="network_mobile">Connected to a mobile data network</string>
 
-    <string name="book_class">Sign up for classes</string>
+    <string name="sign_up_for_classes">Sign up for classes</string>
     <string name="view_calendar">View our calendar</string>
     <string name="order_uniforms">Order uniforms</string>
     <string name="make_payment">Make a payment</string>
@@ -24,6 +24,7 @@
     <string name="uniform_submit_success">Success! Your uniform order has been sent</string>
     <string name="uniform_submit_error">Sorry, something has gone wrong submitting your uniform order</string>
 
+    <string name="booking_class">Book class</string>
     <string name="booking_class_select_dates">Select dates</string>
     <string name="booking_class_book_dates">Book dates</string>
     <string name="booking_class_dates_error">Sorry, something has gone wrong loading dates for this class</string>

@@ -15,7 +15,7 @@
         android:elevation="4dp"
         android:theme="@style/ThemeOverlay.AppCompat.ActionBar"
         app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
-        app:title="@string/book_class" />
+        app:title="@string/booking_class" />
 
     <ScrollView
         android:layout_width="0dp"
