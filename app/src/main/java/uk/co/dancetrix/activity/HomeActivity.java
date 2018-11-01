@@ -25,6 +25,8 @@ import uk.co.dancetrix.util.NetworkUtil;
 
 public class HomeActivity extends BaseActivity {
 
+    private static boolean firstRun = true;
+
     @Override
     protected int getMainId() {
         return R.id.activity_home;
@@ -50,22 +52,26 @@ public class HomeActivity extends BaseActivity {
             Toast.makeText(this, NetworkUtil.getConnectivityStatusString(this), Toast.LENGTH_LONG).show();
         }
 
-        // Set toolbar to full height
-        Toolbar toolbar = findViewById(R.id.toolbar);
-        int toolbarHeight = toolbar.getLayoutParams().height;
-        toolbar.getLayoutParams().height = findViewById(R.id.activity_home).getLayoutParams().height;
+        if (firstRun) {
+            firstRun = false;
 
-        // Animate it to original height
-        new Handler().postDelayed(() -> {
-            ValueAnimator va = ValueAnimator.ofInt(toolbar.getHeight(), toolbarHeight);
-            va.setDuration(200);
-            va.addUpdateListener(valueAnimator -> {
-                        toolbar.getLayoutParams().height = (Integer)valueAnimator.getAnimatedValue();
-                        toolbar.requestLayout();
-                    }
-            );
-            va.start();
-        },1000);
+            // Set toolbar to full height
+            Toolbar toolbar = findViewById(R.id.toolbar);
+            int toolbarHeight = toolbar.getLayoutParams().height;
+            toolbar.getLayoutParams().height = findViewById(R.id.activity_home).getLayoutParams().height;
+
+            // Animate it to original height
+            new Handler().postDelayed(() -> {
+                ValueAnimator va = ValueAnimator.ofInt(toolbar.getHeight(), toolbarHeight);
+                va.setDuration(200);
+                va.addUpdateListener(valueAnimator -> {
+                            toolbar.getLayoutParams().height = (Integer) valueAnimator.getAnimatedValue();
+                            toolbar.requestLayout();
+                        }
+                );
+                va.start();
+            }, 1000);
+        }
     }
 
     private void removeView(int id, boolean ifFlag) {
