@@ -9,10 +9,10 @@ import uk.co.dancetrix.util.StringFormatter;
 
 public class RegistrationChild extends RegistrationBase {
 
-    private String contact;
-    private Date dateJoined;
-    private String hearAbout;
-    private String name;
+    private final String contact;
+    private final Date dateJoined;
+    private final String hearAbout;
+    private final String name;
     private String photoConsent;
 
     public RegistrationChild(final String studentName,
@@ -34,6 +34,10 @@ public class RegistrationChild extends RegistrationBase {
         this.dateJoined = dateJoined;
         this.hearAbout = hearAbout;
         this.name = name;
+        this.photoConsent = photoConsent;
+    }
+
+    public void setPhotoConsent(String photoConsent) {
         this.photoConsent = photoConsent;
     }
 

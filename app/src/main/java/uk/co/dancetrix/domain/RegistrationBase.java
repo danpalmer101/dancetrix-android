@@ -1,7 +1,6 @@
 package uk.co.dancetrix.domain;
 
 import android.graphics.Bitmap;
-import android.media.Image;
 
 import java.util.Date;
 import java.util.HashMap;
@@ -18,7 +17,7 @@ public abstract class RegistrationBase {
     private final String address;
     private final String medical;
     private final String experience;
-    private final Bitmap signature;
+    private Bitmap signature;
 
     RegistrationBase(final String studentName,
                      final Date dateOfBirth,
@@ -38,6 +37,10 @@ public abstract class RegistrationBase {
         this.signature = signature;
     }
 
+    public void setSignature(Bitmap signature) {
+        this.signature = signature;
+    }
+
     public Bitmap getSignature() {
         return signature;
     }
@@ -53,6 +56,11 @@ public abstract class RegistrationBase {
         emailParameters.put("medical", medical);
 
         return emailParameters;
+    }
+
+    @Override
+    public String toString() {
+        return "data = " + getEmailParameters().toString() + ", signature = " + (signature != null ? "Set" : "Not set");
     }
 
 }

@@ -36,6 +36,11 @@
 
     <string name="register_adult">Adult</string>
     <string name="register_child">Child</string>
+    <string name="register_adult_title">Register adult</string>
+    <string name="register_child_title">Register child</string>
+    <string name="register_next">Next</string>
+    <string name="register_medical_note">Please note, we take no liability for injuries in class and all participation is at your own risk.</string>
+    <string name="register_contact_note">Please note, we will endeavour to make this our primary method of communication but from time to time will also use other methods.</string>
 
     <string name="unexpected_error">Sorry, an unexpected error has occurred</string>
 </resources>

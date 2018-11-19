@@ -1,6 +1,7 @@
 package uk.co.dancetrix.activity;
 
 import android.support.design.widget.TextInputLayout;
+import android.text.InputType;
 import android.text.TextUtils;
 import android.view.View;
 import android.widget.EditText;
@@ -46,6 +47,22 @@ public abstract class AbstractFormActivity extends BaseActivity {
         for (View v : this.formBuilder.viewMap.values()) {
             if (v instanceof EditText) {
                 ((EditText)v).setError(null);
+            }
+        }
+    }
+
+    protected void formatMultiLineTextView(View view) {
+        formatMultiLineTextView(view, 0);
+    }
+
+    protected void formatMultiLineTextView(View view, int lines) {
+        if (view != null && view instanceof EditText) {
+            EditText editText = (EditText)view;
+            editText.setInputType(InputType.TYPE_TEXT_FLAG_MULTI_LINE);
+            editText.setSingleLine(false);
+            editText.setTextColor(0xFFEEEEEE);
+            if (lines > 0) {
+                editText.setLines(lines);
             }
         }
     }

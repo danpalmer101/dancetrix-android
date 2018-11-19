@@ -86,6 +86,20 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".activity.HomeActivity" />
         </activity>
+        <activity
+            android:name=".activity.registration.RegisterAdultActivity"
+            android:parentActivityName=".activity.registration.RegisterMenuActivity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".activity.registration.RegisterMenuActivity" />
+        </activity>
+        <activity
+            android:name=".activity.registration.RegisterChildActivity"
+            android:parentActivityName=".activity.registration.RegisterMenuActivity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".activity.registration.RegisterMenuActivity" />
+        </activity>
     </application>
 
 </manifest>
