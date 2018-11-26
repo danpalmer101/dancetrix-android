@@ -17,13 +17,13 @@
     <string name="payment_let_us_know">Let us know about a payment</string>
     <string name="payment_submit">Submit payment details</string>
     <string name="payment_submit_success">Success! Thanks for letting us know</string>
-    <string name="payment_submit_error">Sorry, something has gone wrong submitting your payment details</string>
+    <string name="payment_submit_error">Sorry, something has gone wrong submitting your payment details, please try again</string>
 
     <string name="uniform_load_error">Sorry, something has gone wrong loading our uniforms</string>
     <string name="uniform_view_catalog">View Catalog</string>
     <string name="uniform_submit">Submit order</string>
     <string name="uniform_submit_success">Success! Your uniform order has been sent</string>
-    <string name="uniform_submit_error">Sorry, something has gone wrong submitting your uniform order</string>
+    <string name="uniform_submit_error">Sorry, something has gone wrong submitting your uniform order, please try again</string>
 
     <string name="booking_class">Book class</string>
     <string name="booking_class_select_dates">Select dates</string>
@@ -32,7 +32,7 @@
     <string name="booking_class_menu_error">Sorry, something has gone wrong loading classes</string>
     <string name="booking_class_submit">Submit booking</string>
     <string name="booking_class_success">Success! Your booking has been submitted</string>
-    <string name="booking_class_error">Sorry, something has gone wrong submitting your booking</string>
+    <string name="booking_class_error">Sorry, something has gone wrong submitting your booking, please try again</string>
 
     <string name="register_adult">Adult</string>
     <string name="register_child">Child</string>
@@ -41,6 +41,20 @@
     <string name="register_next">Next</string>
     <string name="register_medical_note">Please note, we take no liability for injuries in class and all participation is at your own risk.</string>
     <string name="register_contact_note">Please note, we will endeavour to make this our primary method of communication but from time to time will also use other methods.</string>
+
+    <string name="register_photo_consent">Photos/Videos</string>
+    <string name="register_photo_consent_yes">I consent to the user of photos/videos of my child in line with the above.</string>
+    <string name="register_photo_consent_no">I do not consent to the user of photos/videos of my child in line with the above and no not want them to feature in any photos or videos taken.</string>
+    <string name="register_photo_consent_unidentifiable">I do not consent to the user of photos/videos of my child in line with the above and am happy for them to feature in photos or videos but would like them to be non-identifiable within these.</string>
+
+    <string name="register_signature">Signature</string>
+    <string name="register_signature_clear">Clear</string>
+    <string name="register_signature_watermark">Sign here</string>
+    <string name="register_submit">Register</string>
+
+    <string name="register_submit_success">Success! Thanks for registering</string>
+    <string name="register_submit_error">Sorry, something has gone wrong submitting your details, please try again</string>
+
 
     <string name="unexpected_error">Sorry, an unexpected error has occurred</string>
 </resources>

@@ -1,5 +1,6 @@
 package uk.co.dancetrix.activity.registration;
 
+import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v4.content.ContextCompat;
@@ -21,6 +22,7 @@ import java.util.Locale;
 import uk.co.dancetrix.R;
 import uk.co.dancetrix.activity.AbstractFormActivity;
 import uk.co.dancetrix.domain.RegistrationAdult;
+import uk.co.dancetrix.util.Notification;
 
 public class RegisterAdultActivity extends AbstractFormActivity {
 
@@ -145,9 +147,19 @@ public class RegisterAdultActivity extends AbstractFormActivity {
 
                             Log.d("Register", "Collected adult data: " + adult);
 
-                            // TODO - go to signature screen
+                            Intent intent = new Intent(this, RegisterSignatureActivity.class);
+                            intent.putExtra("registration", adult);
+
+                            startActivity(intent);
                         } catch (ParseException e) {
-                            // TODO display error
+                            Log.e("Register", "Unexpected error submitting form", e);
+
+                            Notification.showNotification(
+                                    this,
+                                    getMainId(),
+                                    R.string.unexpected_error,
+                                    Notification.WARNING_BG_COLOR,
+                                    Notification.WARNING_TXT_COLOR);
                         }
                     }
                 })

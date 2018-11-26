@@ -100,6 +100,20 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".activity.registration.RegisterMenuActivity" />
         </activity>
+        <activity
+            android:name=".activity.registration.RegisterPhotoConsentActivity"
+            android:parentActivityName=".activity.registration.RegisterMenuActivity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".activity.registration.RegisterMenuActivity" />
+        </activity>
+        <activity
+            android:name=".activity.registration.RegisterSignatureActivity"
+            android:parentActivityName=".activity.registration.RegisterMenuActivity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".activity.registration.RegisterMenuActivity" />
+        </activity>
     </application>
 
 </manifest>

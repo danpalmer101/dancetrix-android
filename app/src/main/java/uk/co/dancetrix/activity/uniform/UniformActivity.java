@@ -255,7 +255,7 @@ public class UniformActivity extends AbstractFormActivity {
                                         Log.w("Uniform", "Error submitting the uniform order", exception);
 
                                         Notification.showNotification(current,
-                                                R.id.activity_uniform,
+                                                getMainId(),
                                                 R.string.uniform_submit_error,
                                                 Notification.ERROR_BG_COLOR,
                                                 Notification.ERROR_TXT_COLOR);

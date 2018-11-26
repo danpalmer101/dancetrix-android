@@ -1,5 +1,6 @@
 package uk.co.dancetrix.activity.registration;
 
+import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v4.content.ContextCompat;
@@ -22,6 +23,7 @@ import java.util.Locale;
 import uk.co.dancetrix.R;
 import uk.co.dancetrix.activity.AbstractFormActivity;
 import uk.co.dancetrix.domain.RegistrationChild;
+import uk.co.dancetrix.util.Notification;
 
 public class RegisterChildActivity extends AbstractFormActivity {
 
@@ -155,7 +157,7 @@ public class RegisterChildActivity extends AbstractFormActivity {
                                     formBuilder.formMap.get("medical").getValue(),
                                     formBuilder.formMap.get("experience").getValue(),
                                     null,
-                                    formBuilder.formMap.get("contact").getValue(),
+                                    formBuilder.formMap.get("contact_note").getValue(),
                                     DATE_FORMAT.parse(formBuilder.formMap.get("date_joined").getValue()),
                                     formBuilder.formMap.get("hear_about").getValue(),
                                     formBuilder.formMap.get("name").getValue(),
@@ -164,9 +166,19 @@ public class RegisterChildActivity extends AbstractFormActivity {
 
                             Log.d("Register", "Collected child data: " + child);
 
-                            // TODO - go to signature screen
+                            Intent intent = new Intent(this, RegisterPhotoConsentActivity.class);
+                            intent.putExtra("registration", child);
+
+                            startActivity(intent);
                         } catch (ParseException e) {
-                            // TODO display error
+                            Log.e("Register", "Unexpected error submitting form", e);
+
+                            Notification.showNotification(
+                                    this,
+                                    getMainId(),
+                                    R.string.unexpected_error,
+                                    Notification.WARNING_BG_COLOR,
+                                    Notification.WARNING_TXT_COLOR);
                         }
                     }
                 })

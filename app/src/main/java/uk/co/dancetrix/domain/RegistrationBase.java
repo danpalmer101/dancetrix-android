@@ -1,6 +1,7 @@
 package uk.co.dancetrix.domain;
 
 import android.graphics.Bitmap;
+import android.os.Parcelable;
 
 import java.util.Date;
 import java.util.HashMap;
@@ -8,16 +9,16 @@ import java.util.Map;
 
 import uk.co.dancetrix.util.StringFormatter;
 
-public abstract class RegistrationBase {
+public abstract class RegistrationBase implements Parcelable {
 
-    private final String studentName;
-    private final Date dateOfBirth;
-    private final String email;
-    private final String phone;
-    private final String address;
-    private final String medical;
-    private final String experience;
-    private Bitmap signature;
+    final String studentName;
+    final Date dateOfBirth;
+    final String email;
+    final String phone;
+    final String address;
+    final String medical;
+    final String experience;
+    Bitmap signature;
 
     RegistrationBase(final String studentName,
                      final Date dateOfBirth,

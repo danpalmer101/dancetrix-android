@@ -167,14 +167,21 @@ public class PaymentFormActivity extends AbstractFormActivity {
                                             Log.w("Payment", "Error submitting the payment details", exception);
 
                                             Notification.showNotification(current,
-                                                    R.id.activity_payment_form,
+                                                    getMainId(),
                                                     R.string.payment_submit_error,
                                                     Notification.ERROR_BG_COLOR,
                                                     Notification.ERROR_TXT_COLOR);
                                         }
                                     });
                         } catch (ParseException e) {
-                            // TODO display error
+                            Log.e("Payment", "Unexpected error submitting form", e);
+
+                            Notification.showNotification(
+                                    this,
+                                    getMainId(),
+                                    R.string.unexpected_error,
+                                    Notification.WARNING_BG_COLOR,
+                                    Notification.WARNING_TXT_COLOR);
                         }
                     }
                 })

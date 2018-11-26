@@ -34,7 +34,7 @@ public class ClassBookingActivity extends AbstractFormActivity {
 
     @Override
     protected int getMainId() {
-        return R.id.activity_payment_form;
+        return R.id.activity_class_booking;
     }
 
     @Override
@@ -127,7 +127,7 @@ public class ClassBookingActivity extends AbstractFormActivity {
                                         Log.w("Booking", "Error submitting the booking", exception);
 
                                         Notification.showNotification(current,
-                                                R.id.activity_class_booking,
+                                                getMainId(),
                                                 R.string.booking_class_error,
                                                 Notification.ERROR_BG_COLOR,
                                                 Notification.ERROR_TXT_COLOR);

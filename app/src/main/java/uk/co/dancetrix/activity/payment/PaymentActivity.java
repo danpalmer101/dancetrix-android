@@ -38,7 +38,7 @@ public class PaymentActivity extends BaseActivity {
                     tv.setMovementMethod(new ScrollingMovementMethod());
                 },
                 e -> Notification.showNotification(this,
-                            R.id.activity_payment_details,
+                            getMainId(),
                             R.string.unexpected_error,
                             Notification.ERROR_BG_COLOR,
                             Notification.ERROR_TXT_COLOR)
