@@ -85,6 +85,7 @@ dependencies {
     implementation 'com.squareup.okhttp3:okhttp:3.10.0'
     implementation 'com.samskivert:jmustache:1.14'
     implementation "ru.noties:markwon:2.0.0"
+    implementation 'com.github.gcacace:signature-pad:1.2.1'
     implementation('com.crashlytics.sdk.android:crashlytics:2.8.0@aar') {
         transitive = true
     }

@@ -2,11 +2,16 @@ package uk.co.dancetrix.activity.registration;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.text.method.ScrollingMovementMethod;
 import android.util.Log;
 import android.view.View;
+import android.widget.Button;
 import android.widget.TextView;
+
+import com.github.gcacace.signaturepad.views.SignaturePad;
 
 import ru.noties.markwon.Markwon;
 import uk.co.dancetrix.R;
@@ -17,11 +22,15 @@ import uk.co.dancetrix.domain.RegistrationChild;
 import uk.co.dancetrix.service.Callback;
 import uk.co.dancetrix.service.ServiceLocator;
 import uk.co.dancetrix.service.impl.FirebaseStorageService;
+import uk.co.dancetrix.util.BitmapUtil;
 import uk.co.dancetrix.util.Notification;
 
-public class RegisterSignatureActivity extends BaseActivity {
+public class RegisterSignatureActivity extends BaseActivity implements SignaturePad.OnSignedListener {
 
     private RegistrationBase registration;
+
+    private Button registerBtn, clearBtn;
+    private SignaturePad signaturePad;
 
     @Override
     protected int getMainId() {
@@ -32,6 +41,12 @@ public class RegisterSignatureActivity extends BaseActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register_signature);
+
+        this.registerBtn = findViewById(R.id.registerButton);
+        this.clearBtn = findViewById(R.id.clearButton);
+
+        this.signaturePad = findViewById(R.id.signaturePad);
+        this.signaturePad.setOnSignedListener(this);
 
         this.registration = getIntent().getParcelableExtra("registration");
 
@@ -62,11 +77,14 @@ public class RegisterSignatureActivity extends BaseActivity {
     }
 
     public void submit(View view) {
-        // TODO - get signature
+        Bitmap signature = this.signaturePad.getTransparentSignatureBitmap();
 
-        // TODO - submit
+        // Invert the signature (white to black) then paint on a white background
+        registration.setSignature(BitmapUtil.paintOn(BitmapUtil.invert(signature), Color.WHITE));
 
         Activity current = this;
+
+        registerBtn.setEnabled(false);
 
         ServiceLocator.REGISTRATION_SERVICE.register(this,
                 registration,
@@ -89,6 +107,8 @@ public class RegisterSignatureActivity extends BaseActivity {
                     public void onError(Exception exception) {
                         Log.w("Register", "Error submitting the registration details", exception);
 
+                        registerBtn.setEnabled(true);
+
                         Notification.showNotification(current,
                                 getMainId(),
                                 R.string.register_submit_error,
@@ -98,4 +118,28 @@ public class RegisterSignatureActivity extends BaseActivity {
                 });
     }
 
+    public void clear(View view) {
+        this.signaturePad.clear();
+
+        onClear();
+    }
+
+    // Signature Pad bindings
+
+    @Override
+    public void onSigned() {
+        this.registerBtn.setEnabled(true);
+        this.clearBtn.setEnabled(true);
+    }
+
+    @Override
+    public void onClear() {
+        this.registerBtn.setEnabled(false);
+        this.clearBtn.setEnabled(false);
+    }
+
+    @Override
+    public void onStartSigning() {
+        // Do nothing
+    }
 }

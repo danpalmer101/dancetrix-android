@@ -27,24 +27,80 @@
         android:scrollbars="vertical"
         android:text=""
         android:textSize="18sp"
-        app:layout_constraintBottom_toTopOf="@+id/registerButton"
+        app:layout_constraintBottom_toTopOf="@+id/signaturePadView"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/toolbar" />
 
-    <Button
-        android:id="@+id/registerButton"
-        style="@style/Widget.AppCompat.Button.Borderless"
+    <RelativeLayout
+        android:id="@+id/signaturePadView"
+        android:layout_width="0dp"
+        android:layout_height="150dp"
+        android:layout_margin="20dp"
+        android:layout_marginBottom="8dp"
+        app:layout_constraintBottom_toTopOf="@+id/buttonsView"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent">
+
+        <TextView
+            android:id="@+id/signaturePadWatermark"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:alpha=".25"
+            android:text="@string/register_signature_watermark"
+            android:textSize="40sp" />
+
+        <com.github.gcacace.signaturepad.views.SignaturePad
+            xmlns:android="http://schemas.android.com/apk/res/android"
+            xmlns:app="http://schemas.android.com/apk/res-auto"
+            android:id="@+id/signaturePad"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@drawable/signature_pad"
+            app:penColor="@android:color/white" />
+
+    </RelativeLayout>
+
+    <LinearLayout
+        android:id="@+id/buttonsView"
+        android:orientation="horizontal"
         android:layout_width="0dp"
         android:layout_height="50dp"
         android:layout_marginBottom="16dp"
         android:layout_marginEnd="16dp"
         android:layout_marginStart="16dp"
-        android:background="@drawable/submit_button"
-        android:text="@string/register_submit"
-        android:onClick="submit"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent">
+
+        <Button
+            android:id="@+id/clearButton"
+            style="@style/Widget.AppCompat.Button.Borderless"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight=".30"
+            android:background="@drawable/submit_button"
+            android:text="@string/register_signature_clear"
+            android:onClick="clear"
+            android:enabled="false" />
+
+        <!-- Padding between buttons -->
+        <View
+            android:layout_width="16dp"
+            android:layout_height="match_parent" />
+
+        <Button
+            android:id="@+id/registerButton"
+            style="@style/Widget.AppCompat.Button.Borderless"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight=".70"
+            android:background="@drawable/submit_button"
+            android:text="@string/register_submit"
+            android:onClick="submit"
+            android:enabled="false" />
+
+    </LinearLayout>
 
 </android.support.constraint.ConstraintLayout>
