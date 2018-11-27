@@ -1,6 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <defaultsMap>
     <entry>
+        <key>email_address_registration_from</key>
+        <value>Dance Trix Registration &lt;registration@dancetrix.co.uk&gt;</value>
+    </entry>
+    <entry>
         <key>email_address_payment_from</key>
         <value>Dance Trix Payments &lt;payments@dancetrix.co.uk&gt;</value>
     </entry>
@@ -33,12 +37,16 @@
         <value>XXXX</value>
     </entry>
     <entry>
+        <key>feature_registration</key>
+        <value>yes</value>
+    </entry>
+    <entry>
         <key>feature_book</key>
         <value>yes</value>
     </entry>
     <entry>
         <key>feature_calendar</key>
-        <value>yes</value>
+        <value>no</value>
     </entry>
     <entry>
         <key>feature_payment</key>

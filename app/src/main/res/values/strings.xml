@@ -43,9 +43,9 @@
     <string name="register_contact_note">Please note, we will endeavour to make this our primary method of communication but from time to time will also use other methods.</string>
 
     <string name="register_photo_consent">Photos/Videos</string>
-    <string name="register_photo_consent_yes">I consent to the user of photos/videos of my child in line with the above.</string>
-    <string name="register_photo_consent_no">I do not consent to the user of photos/videos of my child in line with the above and no not want them to feature in any photos or videos taken.</string>
-    <string name="register_photo_consent_unidentifiable">I do not consent to the user of photos/videos of my child in line with the above and am happy for them to feature in photos or videos but would like them to be non-identifiable within these.</string>
+    <string name="register_photo_consent_yes">I consent to the use of photos/videos of my child in line with the above.</string>
+    <string name="register_photo_consent_no">I do not consent to the use of photos/videos of my child in line with the above and no not want them to feature in any photos or videos taken.</string>
+    <string name="register_photo_consent_unidentifiable">I do not consent to the use of photos/videos of my child in line with the above and am happy for them to feature in photos or videos but would like them to be non-identifiable within these.</string>
 
     <string name="register_signature">Signature</string>
     <string name="register_signature_clear">Clear</string>

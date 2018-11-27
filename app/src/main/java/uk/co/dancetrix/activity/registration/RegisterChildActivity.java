@@ -16,6 +16,7 @@ import com.dariopellegrini.formbuilder.FormObject;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
 import java.util.Locale;
@@ -130,6 +131,18 @@ public class RegisterChildActivity extends AbstractFormActivity {
                 .setType(FormElement.Type.TEXTVIEW)
         );
 
+        formObjects.add(new FormHeader().setTitle("Contact"));
+        FormElement packageName = new SingleSelectFormElement();
+        formObjects.add(packageName
+                .setTag("contact")
+                .setHint("Preferred contact method")
+                .setType(FormElement.Type.SELECTION)
+                .setOptions(Arrays.asList(
+                        "Email",
+                        "Text",
+                        "Printed information",
+                        "Text to highlight an email has been sent"))
+        );
         formObjects.add(new FormElement()
                 .setTag("contact_note")
                 .setType(FormElement.Type.TEXTVIEW)
@@ -157,7 +170,7 @@ public class RegisterChildActivity extends AbstractFormActivity {
                                     formBuilder.formMap.get("medical").getValue(),
                                     formBuilder.formMap.get("experience").getValue(),
                                     null,
-                                    formBuilder.formMap.get("contact_note").getValue(),
+                                    formBuilder.formMap.get("contact").getValue(),
                                     DATE_FORMAT.parse(formBuilder.formMap.get("date_joined").getValue()),
                                     formBuilder.formMap.get("hear_about").getValue(),
                                     formBuilder.formMap.get("name").getValue(),

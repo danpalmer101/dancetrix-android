@@ -19,7 +19,7 @@ public class Configuration {
                         .build();
         FirebaseRemoteConfig.getInstance().setConfigSettings(configSettings);
         FirebaseRemoteConfig.getInstance().setDefaults(R.xml.remote_config_defaults);
-        FirebaseRemoteConfig.getInstance().fetch().addOnSuccessListener(
+        FirebaseRemoteConfig.getInstance().fetch(60).addOnSuccessListener(
                 aVoid -> FirebaseRemoteConfig.getInstance().activateFetched()
         );
     }
