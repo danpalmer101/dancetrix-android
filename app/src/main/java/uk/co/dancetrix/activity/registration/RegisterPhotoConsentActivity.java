@@ -2,7 +2,7 @@ package uk.co.dancetrix.activity.registration;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.text.method.ScrollingMovementMethod;
+import android.text.method.LinkMovementMethod;
 import android.view.View;
 import android.widget.TextView;
 
@@ -40,7 +40,7 @@ public class RegisterPhotoConsentActivity extends BaseActivity {
                 photoText -> {
                     TextView tv = findViewById(R.id.photoConsentInfoView);
                     Markwon.setMarkdown(tv, photoText);
-                    tv.setMovementMethod(new ScrollingMovementMethod());
+                    tv.setMovementMethod(LinkMovementMethod.getInstance());
                 },
                 e -> Notification.showNotification(this,
                             getMainId(),

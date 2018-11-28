@@ -5,7 +5,7 @@ import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.Color;
 import android.os.Bundle;
-import android.text.method.ScrollingMovementMethod;
+import android.text.method.LinkMovementMethod;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -66,7 +66,7 @@ public class RegisterSignatureActivity extends BaseActivity implements Signature
                 signatureText -> {
                     TextView tv = findViewById(R.id.signatureInfoView);
                     Markwon.setMarkdown(tv, signatureText);
-                    tv.setMovementMethod(new ScrollingMovementMethod());
+                    tv.setMovementMethod(LinkMovementMethod.getInstance());
                 },
                 e -> Notification.showNotification(this,
                             getMainId(),

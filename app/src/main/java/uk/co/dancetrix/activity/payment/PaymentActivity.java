@@ -2,7 +2,7 @@ package uk.co.dancetrix.activity.payment;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.text.method.ScrollingMovementMethod;
+import android.text.method.LinkMovementMethod;
 import android.view.View;
 import android.widget.TextView;
 
@@ -35,7 +35,7 @@ public class PaymentActivity extends BaseActivity {
                 paymentText -> {
                     TextView tv = findViewById(R.id.paymentInfoView);
                     Markwon.setMarkdown(tv, paymentText);
-                    tv.setMovementMethod(new ScrollingMovementMethod());
+                    tv.setMovementMethod(LinkMovementMethod.getInstance());
                 },
                 e -> Notification.showNotification(this,
                             getMainId(),

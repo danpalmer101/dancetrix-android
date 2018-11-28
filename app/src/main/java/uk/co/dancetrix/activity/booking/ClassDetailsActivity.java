@@ -3,7 +3,7 @@ package uk.co.dancetrix.activity.booking;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
-import android.text.method.ScrollingMovementMethod;
+import android.text.method.LinkMovementMethod;
 import android.util.SparseBooleanArray;
 import android.view.View;
 import android.widget.ArrayAdapter;
@@ -92,7 +92,7 @@ public class ClassDetailsActivity extends BaseActivity {
                     current.runOnUiThread(() -> {
                         TextView textView = findViewById(R.id.classInfoView);
                         Markwon.setMarkdown(textView, response);
-                        textView.setMovementMethod(new ScrollingMovementMethod());
+                        textView.setMovementMethod(LinkMovementMethod.getInstance());
                     });
                 }
 
