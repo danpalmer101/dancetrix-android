@@ -67,6 +67,13 @@ public abstract class AbstractFormActivity extends BaseActivity {
         }
     }
 
+    protected void formatDecimalTextView(View view) {
+        if (view != null && view instanceof EditText) {
+            EditText editText = (EditText)view;
+            editText.setInputType(InputType.TYPE_CLASS_NUMBER | InputType.TYPE_NUMBER_FLAG_DECIMAL);
+        }
+    }
+
     /**
      * HACK : Override the form element to prevent multiple options being selected on a single select form element
      * https://github.com/dariopellegrini/FormBuilder/issues/1

@@ -189,6 +189,8 @@ public class PaymentFormActivity extends AbstractFormActivity {
 
         this.formBuilder.build(formObjects);
 
+        formatDecimalTextView(this.formBuilder.viewMap.get("amount"));
+
         fixFormBuilderViewMap(formLayout);
     }
 
