@@ -25,6 +25,11 @@ fastlane alpha
 fastlane beta
 ```
 
+### release
+```
+fastlane release
+```
+
 
 ----
 

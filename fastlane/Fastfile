@@ -5,15 +5,7 @@ fastlane_version "2.68.0"
 
 default_platform :android
 
-private_lane :set_version do |options|
-  if options[:version]
-    add_git_tag(tag: options[:version])
-  end
-end
-
 private_lane :build do |options|
-  set_version(options)
-
   # build the debug/live variant
   build_android_app(task: "clean")
   build_android_app(task: "assemble",
@@ -46,4 +38,24 @@ lane :beta do |options|
     groups: ["developers", "android-testers"]
   )
 
+end
+
+lane :release do |options|
+  if options[:version_name] && options[:version_code]
+    puts "vName=#{options[:version_name]}, vCode=#{options[:version_code]}"
+
+    add_git_tag(tag: options[:version_name])
+
+    # build the debug/live variant
+    build_android_app(task: "clean")
+    build_android_app(task: "assemble",
+                      flavor: "Live",
+                      build_type: "Release",
+                      properties: {
+                        "vCode" => options[:version_code],
+                        "vName" => options[:version_name]
+                       })
+  else
+    puts "Invalid command, use: fastlane release version_name:x.x.x version_code:0x0x0x"
+  end
 end
